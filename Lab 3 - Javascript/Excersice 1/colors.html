@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COLORS</title>
+
+</head>
+
+<body>
+    <div>
+        <div>
+            <div style=" text-align:center">
+                <span onmouseover="onMouseOver('red')" onmouseout="onMouseOut()"
+                    style="color:red; margin:24px;font-weight: bold; font-size: 24px;cursor: pointer;">RED</span>
+                <span onmouseover="onMouseOver('green')" onmouseout="onMouseOut()"
+                    style="color:green; margin:24px;font-weight: bold;font-size: 24px;cursor: pointer;">GREEN</span>
+                <span onmouseover="onMouseOver('blue')" onmouseout="onMouseOut()"
+                    style="color:blue; margin:24px;font-weight: bold;font-size: 24px;cursor: pointer;">BLUE</span>
+            </div>
+
+            <div>
+                <p id="choose-paragraph">
+                    <span style="font-weight: bold">MediaStream</span> </br>
+                    Một MediaStream đại diện cho sự đồng bộ dữ liệu âm thanh và hình ảnh. MediaStream được khởi tạo bằng
+                    cách gọi hàm
+                    getUserMedia (Web API thôi nhé, native code như Android và iOS thì có khác tý, tên hàm vs gọi hàm,
+                    nhưng về cơ bản là
+                    cùng cha khác ông nội thôi). Sau khi một kết nối WebRTC tới một máy tính khác được thiết lập,
+                    chúng ta có khả năng
+                    truy cập vào stream của máy tính đó. Mỗi peer sẽ có một local media stream riêng.
+
+                    Một MediaStream sẽ có input/output. Input là sẽ lấy những dữ liệu âm thanh và hình ảnh của local và
+                    output dùng để hiển
+                    thị lên view hoặc được RTCPeerConnection sử dụng (đề cập sau)
+
+                    Mỗi một MediaStream đều có một cái nhãn tên(label), ví dụ như "Xk7EuLhsuHKbnjLWkW4yYGNJJ8ONsgwHBvLQ"
+
+                    Sử dụng MediaStream (getUserMedia) như thế nào? Hiện giờ thì mình mới chỉ có khả năng làm trên
+                    Android vs JavaScript
+                    thôi nên mình chỉ show ít code cùi bắp vậy thôi nha các ngôn ngữ khác thì các bạn tự tim hiểu nha
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function onMouseOver(choosecolor) {
+            document.getElementById("choose-paragraph").style.color = choosecolor;
+        }
+
+        function onMouseOut() {
+            document.getElementById("choose-paragraph").style.color = "black";
+        }
+    </script>
+
+</body>
+
+</html>
