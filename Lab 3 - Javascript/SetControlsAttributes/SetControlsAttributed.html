@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <SCRIPT type="text/javascript">
+      function setAlign(align){
+        var pTag = window.document.getElementById("paragraph")
+        pTag.setAttribute("align", align)
+      }
+    </SCRIPT>
+</head>
+<body>
+<FORM name="alignForm">
+  <select id="alignSelect">
+      <OPTION value="left">left</OPTION>
+      <option value="right">right</option>
+      <option value="center">center</option>
+  </select>
+    <INPUT type="button" value="Go" onclick="setAlign(document.alignForm.alignSelect.value)">
+</FORM>
+<P id="paragraph">
+    This is some sample text
+</P>
+</body>
+</html>
