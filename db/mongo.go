@@ -2,18 +2,20 @@ package db
 
 import (
 	"context"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"time"
 )
 
 var (
+	DBNAME = "web"
 	MongoClient *mongo.Client
 	CTX context.Context
 )
 
 func init(){
-	Client, err := mongo.NewClient(options.Client().ApplyURI("mongo://localhost:27017"))
+	Client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
 	if err != nil{
 		panic(err)
 	}
@@ -46,8 +48,15 @@ func InsertMany(databaseName string, collectionName string, data []interface{})(
 	return
 }
 
-func FindById(databaseName string, collectionName string){
+func FindOneByValue(databaseName string, collectionName string,name string, value interface{}) (result *mongo.SingleResult){
 	collection := Client().Database(databaseName).Collection(collectionName)
-	collection.FindOne()
+	result = collection.FindOne(CTX, bson.M{name: value})
+	collection.Find()
+	return result
 }
+
+//func test(db string, collection string, fitter bson.M){
+//	opts := options.Find().SetLI
+//
+//}
 

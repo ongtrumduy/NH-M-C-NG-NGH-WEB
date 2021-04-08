@@ -2,6 +2,7 @@ package route
 
 import (
 	"github.com/gin-gonic/gin"
+	"web/controller"
 )
 
 type Route struct{
@@ -39,9 +40,9 @@ func addRoute(r *gin.Engine) *gin.RouterGroup{
 var routers = []Route{
 	{
 		name:    "hello",
-		path:    "/",
+		path:    "/hello",
 		method:  "get",
-		handler: nil,
+		handler: controller.Hello,
 	},
 }
 
