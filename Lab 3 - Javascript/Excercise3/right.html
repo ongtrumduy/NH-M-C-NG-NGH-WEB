@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>right</title>
+  <link rel="stylesheet" href="./css/rightStyle.css">
+</head>
+
+<body>
+<h1>POST BLOG</h1>
+<form action="" method="POST">
+  <div class="form-child">
+    <label>Title: </label>
+    <input type="text" placeholder="Enter Title" required id="title" border="none" >
+  </div>
+  <div class="form-child">
+    <label>Author: </label>
+    <input type="text" placeholder="Enter Author" required id="author">
+  </div>
+  <div class="form-child">
+    <label>Content: </label>
+    <textarea name="textarea" placeholder="Enter Content" required id="content" cols="30" rows="10"></textarea>
+  </div>
+  <input id="button" type="submit" value="Add blog" onclick="addBlog()">
+</form>
+
+<script>
+
+
+  function addBlog(e) {
+    var title = document.getElementById("title").value;
+    var author = document.getElementById("author").value;
+    var content = document.getElementById("content").value;
+    console.log(title)
+    var date = new Date();
+    date.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+    var expires = "expires=" + date.toUTCString();
+    document.cookie = "title=" + title + ";" + expires;
+    document.cookie = "author=" + author + ";" + expires;
+    document.cookie = "content=" + content + ";" + expires;
+    if(title != "" && author != "" && content != "") {
+      window.parent.opener.location.reload();
+    }
+  }
+</script>
+</body>
+
+</html>
