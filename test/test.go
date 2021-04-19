@@ -1,27 +1,23 @@
 package main
 
 import (
-	"fmt"
-	"web/db"
-	"web/model"
+	"golang.org/x/net/http2"
+	"golang.org/x/net/http2/h2c"
+	"net/http"
+	"time"
+	"web/route"
 )
 
 func main(){
-	user := model.User{
-		//ID:       primitive.ObjectID{},
-		UserName: "dung",
-		PassWord: "111",
-		Email:    "dung@gmail.com",
+	r := route.NewRoute()
+	h2s := &http2.Server{}
+	addr := "0.0.0.0:8080"
+	server := http.Server{
+		Handler: h2c.NewHandler(r, h2s),
+		Addr: addr,
+		ReadTimeout: time.Second *5,
+		WriteTimeout: time.Second*10,
 	}
-	db.InsertOne("web", "user",user)
-	a := db.FindOneByValue("web", "user", "UserName", "dung")
-	//u := &model.User{}
-
-	bson, err := a.DecodeBytes()
-	if err != nil{
-		fmt.Println(err)
-
-	}
-	fmt.Println(bson)
-
+	server.ListenAndServe()
+	//log.Fatalln( "Server is start on ", addr, server.ListenAndServe())
 }

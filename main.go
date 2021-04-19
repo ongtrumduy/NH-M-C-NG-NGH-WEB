@@ -2,14 +2,14 @@ package main
 
 import (
 	"golang.org/x/net/http2"
+	"golang.org/x/net/http2/h2c"
 	"net/http"
 	"time"
-	"web/route"
-	"golang.org/x/net/http2/h2c"
+	"web/r"
 )
 
 func main(){
-	r := route.NewRouter()
+	r := r.NewRouter()
 	h2s := &http2.Server{}
 
 	server := http.Server{
@@ -19,4 +19,6 @@ func main(){
 		WriteTimeout: time.Second*10,
 	}
 	server.ListenAndServe()
+
 }
+
