@@ -1,49 +1,42 @@
 package route
 
 import (
-	"github.com/gin-gonic/gin"
-	"web/controller"
+	"fmt"
+	"log"
+	"net/http"
+
 )
 
-type Route struct{
-	name 		string
-	path 		string
-	method		string
-	handler     func(c *gin.Context)
-}
 
-func NewRouter() *gin.Engine{
-	//r := gin.New()
-	r := gin.Default()
-	addRoute(r)
-	return r
+type Route struct {
+	basePath string
 }
 
 
-func addRoute(r *gin.Engine) *gin.RouterGroup{
-	groups := r.Group("/web/v1")
-	for _, r := range routers{
-		switch r.method {
-		case "put":
-			groups.PUT(r.path, r.handler)
-		case "get":
-			groups.GET(r.path, r.handler)
-		case "delete":
-			groups.DELETE(r.path, r.handler)
-		case "patch":
-			groups.PATCH(r.path, r.handler)
-		}
-	}
-	return groups
+type HandlerFunc func(*Context)
+
+func (route *Route) ServeHTTP(w http.ResponseWriter, r *http.Request){
+	log.Printf("[%s] %q %v\n", r.Method, r.URL.String())
 }
 
-var routers = []Route{
-	{
-		name:    "hello",
-		path:    "/hello",
-		method:  "get",
-		handler: controller.Hello,
-	},
+func NewRoute() (route *Route){
+	route.basePath = "/"
+	return
 }
 
+func (r *Route) calculateAbsolutePath(relativePath string) string{
+	return joinPaths(r.basePath, relativePath)
+}
 
+func (r *Route)handle(method string, relativePath string, handler HandlerFunc){
+	absolutePath := r.calculateAbsolutePath(relativePath)
+	fmt.Println(absolutePath)
+}
+
+func (r *Route)Get(relativePath string, handler HandlerFunc){
+	r.handle(http.MethodGet, relativePath, handler)
+}
+
+func (r *Route) addRoute(){
+
+}
