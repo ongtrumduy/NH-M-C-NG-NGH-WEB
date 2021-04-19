@@ -5,11 +5,11 @@ import (
 	"golang.org/x/net/http2/h2c"
 	"net/http"
 	"time"
-	"web/route"
+	"web/routefw"
 )
 
 func main(){
-	r := route.NewRoute()
+	r := routefw.NewRoute()
 	h2s := &http2.Server{}
 	addr := "0.0.0.0:8080"
 	server := http.Server{
@@ -19,5 +19,4 @@ func main(){
 		WriteTimeout: time.Second*10,
 	}
 	server.ListenAndServe()
-	//log.Fatalln( "Server is start on ", addr, server.ListenAndServe())
 }

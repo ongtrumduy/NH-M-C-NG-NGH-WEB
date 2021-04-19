@@ -8,6 +8,8 @@ import (
 	"net/url"
 	"strings"
 	"unicode"
+	"fmt"
+
 )
 
 // Param is a single URL parameter, consisting of a key and a value.
@@ -131,10 +133,11 @@ func (n *node) incrementChildPrio(pos int) int {
 // addRoute adds a node with the given handle to the path.
 // Not concurrency-safe!
 func (n *node) addRoute(path string, handlers HandlersChain) {
+	fmt.Println("addRoute path ", path)
 	fullPath := path
 	n.priority++
 	numParams := countParams(path)
-
+	fmt.Println("numParams ", numParams)
 	// Empty tree
 	if len(n.path) == 0 && len(n.children) == 0 {
 		n.insertChild(numParams, path, fullPath, handlers)
@@ -252,6 +255,11 @@ walk:
 				n = child
 			}
 			n.insertChild(numParams, path, fullPath, handlers)
+			fmt.Println()
+			for ;len(n.children) > 0;{
+				fmt.Println(n.path)
+				n = n.children[0]
+			}
 			return
 		}
 
@@ -422,13 +430,20 @@ type nodeValue struct {
 // given path.
 func (n *node) getValue(path string, po Params, unescape bool) (value nodeValue) {
 	value.params = po
+	fmt.Println("childrens")
+	for i:=0; i < len(n.children); i++{
+		fmt.Println(*n.children[i])
+	}
+	fmt.Println("..............")
 walk: // Outer loop for walking the tree
 	for {
 		prefix := n.path
+		fmt.Println("prefix ", prefix)
 		if path == prefix {
 			// We should have reached the node containing the handle.
 			// Check if this node has a handle registered.
 			if value.handlers = n.handlers; value.handlers != nil {
+				fmt.Println("n.fullPath ", n.fullPath)
 				value.fullPath = n.fullPath
 				return
 			}
@@ -452,8 +467,9 @@ walk: // Outer loop for walking the tree
 
 			return
 		}
-
+		fmt.Println("..path ", path)
 		if len(path) > len(prefix) && path[:len(prefix)] == prefix {
+			fmt.Println("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz")
 			path = path[len(prefix):]
 			// If this node does not have a wildcard (param or catchAll)
 			// child,  we can just look up the next child node and continue

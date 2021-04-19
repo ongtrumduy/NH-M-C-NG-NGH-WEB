@@ -1,6 +1,7 @@
 package r
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"web/controller"
 )
@@ -22,8 +23,9 @@ func NewRouter() *gin.Engine{
 
 
 func addRoute(r *gin.Engine) *gin.RouterGroup{
-	groups := r.Group("/web/v1")
+	groups := r.Group("/web")
 	for _, r := range routers{
+		fmt.Println("r.handler ", r.handler)
 		switch r.method {
 		case "put":
 			groups.PUT(r.path, r.handler)
@@ -39,11 +41,30 @@ func addRoute(r *gin.Engine) *gin.RouterGroup{
 }
 
 var routers = []Route{
+
 	{
 		name:    "hello",
-		path:    "/hello",
+		path:    "/hello1/",
+		method:  "get",
+		handler: controller.Hello1,
+	},
+	{
+		name:    "hello",
+		path:    "/hello2/:xya",
+		method:  "get",
+		handler: controller.Hello2,
+	},
+	{
+		name:    "hello",
+		path:    "/hello/:abc/:xyz/",
 		method:  "get",
 		handler: controller.Hello,
+	},
+	{
+		name:    "hello",
+		path:    "/hello3/:abc/:xyz/:edf/",
+		method:  "get",
+		handler: controller.Hello1,
 	},
 }
 

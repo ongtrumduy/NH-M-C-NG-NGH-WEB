@@ -401,7 +401,16 @@ func (engine *Engine) handleHTTPRequest(c *Context) {
 		}
 		root := t[i].root
 		// Find route in tree
+		fmt.Println("rPath ", rPath)
+		fmt.Println("params ", c.Params)
+		fmt.Println("unescape ", unescape)
+		fmt.Println("httpMethod ", httpMethod)
+		fmt.Println("engine.HandleMethodNotAllowed", engine.HandleMethodNotAllowed)
 		value := root.getValue(rPath, c.Params, unescape)
+		//fmt.Println("value.handlers ", value.handlers)
+		for i := 0; i < len(value.handlers); i++{
+			fmt.Printf("%v\n", &value.handlers[i])
+		}
 		if value.handlers != nil {
 			c.handlers = value.handlers
 			c.Params = value.params
@@ -421,6 +430,7 @@ func (engine *Engine) handleHTTPRequest(c *Context) {
 		}
 		break
 	}
+	fmt.Println("engine.HandleMethodNotAllowed", engine.HandleMethodNotAllowed)
 
 	if engine.HandleMethodNotAllowed {
 		for _, tree := range engine.trees {
@@ -452,8 +462,10 @@ func serveError(c *Context, code int, defaultMessage []byte) {
 		if err != nil {
 			debugPrint("cannot write message to writer during serve error: %v", err)
 		}
+		fmt.Println("222222222222222")
 		return
 	}
+	fmt.Println("1111111111111")
 	c.writermem.WriteHeaderNow()
 }
 
