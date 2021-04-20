@@ -25,12 +25,7 @@ type node struct{
 
 type nodeType uint8
 
-type methodNode struct {
-	method string
-	root *node
-}
 
-type methodNodes []methodNode
 
 type nodeValue struct {
 	handler HandlerFunc
@@ -125,5 +120,8 @@ walk:
 		}
 		return
 	}
+}
+
+func (n *node) addRoute(path string, handler HandlerFunc){
 
 }

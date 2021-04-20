@@ -6,19 +6,22 @@ import (
 	"sync"
 )
 
+var (
+	default404Body   = []byte("404 page not found")
+)
 
 type Route struct {
-	basePath	 		string
-	pool				sync.Pool
-	UseRawPath			bool
-	UnescapePathValues 	bool
-	nodes				methodNodes
+	basePath           string
+	pool               sync.Pool
+	UseRawPath         bool
+	UnescapePathValues bool
+	trees              methodNodes
+	allNoRoute         HandlerFunc
 }
 
 
 type HandlerFunc func(*Context)
 
-type HandlersChain []HandlerFunc
 
 func NewRoute() (route *Route){
 	route.basePath = "/"
@@ -38,7 +41,30 @@ func (r *Route)Get(relativePath string, handler HandlerFunc){
 	r.handle(http.MethodGet, relativePath, handler)
 }
 
-func (r *Route) addRoute(){
+var methods = map[string]bool{http.MethodDelete: true, http.MethodPost: true, http.MethodGet: true}
+
+func (r *Route) addRoute(method string, path string, handle HandlerFunc){
+	if path[0] != '/'{
+		panic("path error, path must begin with /")
+	}
+	_, ok := methods[method]
+	if !ok{
+		panic("method must be post, delete or get")
+	}
+	if handle == nil{
+		panic("handle cannot be nil")
+	}
+	root := r.trees.get(method)
+	if root == nil{
+		root = new(node)
+		root.fullPath = "/"
+		r.trees = append(r.trees, methodNode{
+			method: method,
+			root:   root,
+		})
+	}
+	root.addRoute(path, handle)
+
 
 }
 
@@ -62,7 +88,7 @@ func (r *Route) handleHttpRequest(c *Context){
 		rPath = c.Request.URL.RawPath
 		unescape = r.UnescapePathValues
 	}
-	nodes := r.nodes
+	nodes := r.trees
 	for i := 0; i < len(nodes); i++{
 		if nodes[i].method != httpMethod{
 			continue
@@ -73,7 +99,30 @@ func (r *Route) handleHttpRequest(c *Context){
 			c.handler = value.handler
 			c.Params = value.params
 			c.fullPath = value.fullPath
+			c.handler(c)
+			c.writermem.WriteHeaderNow()
+			return
 		}
-
 	}
+	c.handler = r.allNoRoute
+	serveError(c, http.StatusNotFound, default404Body)
 }
+
+var mimePlain = []string{"text/plain"}
+
+func serveError(c *Context, code int, defaultMessage []byte){
+	c.writermem.status = code
+	if c.writermem.Written(){
+		return
+	}
+	if c.writermem.Status() == code{
+		c.writermem.Header()["Content-Type"] = mimePlain
+		_, err := c.writermem.Write(defaultMessage)
+		if err != nil{
+			fmt.Println("err :", err)
+		}
+		return
+	}
+	c.writermem.WriteHeaderNow()
+}
+

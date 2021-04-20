@@ -6,7 +6,6 @@ package gin
 
 import (
 	"errors"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"math"
@@ -18,7 +17,7 @@ import (
 	"strings"
 	"sync"
 	"time"
-
+	"fmt"
 	"github.com/gin-contrib/sse"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/gin-gonic/gin/render"
@@ -156,6 +155,7 @@ func (c *Context) FullPath() string {
 // It executes the pending handlers in the chain inside the calling handler.
 // See example in GitHub.
 func (c *Context) Next() {
+	fmt.Println("c next ", c.index)
 	c.index++
 	for c.index < int8(len(c.handlers)) {
 		c.handlers[c.index](c)

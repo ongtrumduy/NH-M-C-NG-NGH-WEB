@@ -405,18 +405,20 @@ func (engine *Engine) handleHTTPRequest(c *Context) {
 		fmt.Println("params ", c.Params)
 		fmt.Println("unescape ", unescape)
 		fmt.Println("httpMethod ", httpMethod)
-		fmt.Println("engine.HandleMethodNotAllowed", engine.HandleMethodNotAllowed)
+
 		value := root.getValue(rPath, c.Params, unescape)
 		//fmt.Println("value.handlers ", value.handlers)
 		for i := 0; i < len(value.handlers); i++{
 			fmt.Printf("%v\n", &value.handlers[i])
 		}
 		if value.handlers != nil {
+
 			c.handlers = value.handlers
 			c.Params = value.params
 			c.fullPath = value.fullPath
 			c.Next()
 			c.writermem.WriteHeaderNow()
+			fmt.Println("22222222222222222")
 			return
 		}
 		if httpMethod != "CONNECT" && rPath != "/" {
@@ -430,8 +432,8 @@ func (engine *Engine) handleHTTPRequest(c *Context) {
 		}
 		break
 	}
-	fmt.Println("engine.HandleMethodNotAllowed", engine.HandleMethodNotAllowed)
-
+	//fmt.Println("engine.HandleMethodNotAllowed", engine.HandleMethodNotAllowed)
+	fmt.Println("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
 	if engine.HandleMethodNotAllowed {
 		for _, tree := range engine.trees {
 			if tree.method == httpMethod {
@@ -444,6 +446,7 @@ func (engine *Engine) handleHTTPRequest(c *Context) {
 			}
 		}
 	}
+	fmt.Println("...................engine.allNoRoute ", engine.allNoRoute)
 	c.handlers = engine.allNoRoute
 	serveError(c, http.StatusNotFound, default404Body)
 }

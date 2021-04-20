@@ -8,11 +8,13 @@ type Context struct {
 	Params	 			Params
 	handler 			HandlerFunc
 	fullPath 			string
+	Writer    			ResponseWriter
 }
 
 func (c *Context) reset()  {
+	c.Writer = &c.writermem
 	c.Params = c.Params[0:0]
 	c.handler = nil
 	c.fullPath = ""
-
 }
+
