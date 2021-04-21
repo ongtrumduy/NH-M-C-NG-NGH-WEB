@@ -23,11 +23,6 @@ type Route struct {
 type HandlerFunc func(*Context)
 
 
-func NewRoute() (route *Route){
-	route.basePath = "/"
-	return
-}
-
 func (r *Route) calculateAbsolutePath(relativePath string) string{
 	return joinPaths(r.basePath, relativePath)
 }
@@ -39,6 +34,14 @@ func (r *Route)handle(method string, relativePath string, handler HandlerFunc){
 
 func (r *Route)Get(relativePath string, handler HandlerFunc){
 	r.handle(http.MethodGet, relativePath, handler)
+}
+
+func (r *Route)Post(relativePath string, handler HandlerFunc){
+	r.handle(http.MethodPost, relativePath, handler)
+}
+
+func (r *Route) Delete(relativePath string, handler HandlerFunc){
+	r.handle(http.MethodDelete, relativePath, handler)
 }
 
 var methods = map[string]bool{http.MethodDelete: true, http.MethodPost: true, http.MethodGet: true}
@@ -69,7 +72,6 @@ func (r *Route) addRoute(method string, path string, handle HandlerFunc){
 }
 
 //inheritance func ServeHTTP of http.Handler interface to implement route
-
 func (r *Route) ServeHTTP(w http.ResponseWriter, request *http.Request){
 	c := r.pool.Get().(*Context)
 	c.Request = request
@@ -126,3 +128,19 @@ func serveError(c *Context, code int, defaultMessage []byte){
 	c.writermem.WriteHeaderNow()
 }
 
+func (r *Route) allocateContext() *Context{
+	return &Context{route: r}
+}
+
+func NewRoute() *Route{
+	route := &Route{
+		basePath:           "/",
+		UseRawPath:         false,
+		UnescapePathValues: false,
+		trees:              make(methodNodes, 0, 3),
+	}
+	route.pool.New = func() interface{}{
+		return route.allocateContext()
+	}
+	return route
+}

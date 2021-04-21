@@ -5,11 +5,11 @@ import (
 	"golang.org/x/net/http2/h2c"
 	"net/http"
 	"time"
-	"web/r"
+	"web/route"
 )
 
 func main(){
-	r := r.NewRouter()
+	r := route.NewRouter()
 	h2s := &http2.Server{}
 
 	server := http.Server{
