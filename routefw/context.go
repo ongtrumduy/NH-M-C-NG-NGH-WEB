@@ -33,7 +33,15 @@ func(c *Context) Status(code int){
 func (c *Context) Render(code int, r render.Render){
 	c.Status(code)
 	if !bodyAllowedForStatus(code){
-		//r.WriteContentType(c.Writer)
-		//c.Writer.WriteHeaderNow()
+		r.WriteContentType(c.Writer)
+		c.Writer.WriteHeaderNow()
+		return
 	}
+	if err := r.Render(c.Writer); err != nil{
+		panic(err)
+	}
+}
+
+func (c *Context) JSON(code int, obj interface{}){
+	c.Render(code, render.AsciiJSON{Data: obj})
 }

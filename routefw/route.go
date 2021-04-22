@@ -30,6 +30,7 @@ func (r *Route) calculateAbsolutePath(relativePath string) string{
 func (r *Route)handle(method string, relativePath string, handler HandlerFunc){
 	absolutePath := r.calculateAbsolutePath(relativePath)
 	fmt.Println(absolutePath)
+	r.addRoute(method, absolutePath, handler)
 }
 
 func (r *Route)Get(relativePath string, handler HandlerFunc){
@@ -91,6 +92,8 @@ func (r *Route) handleHttpRequest(c *Context){
 		unescape = r.UnescapePathValues
 	}
 	nodes := r.trees
+	//fmt.Println("len nodes",len(nodes))
+	//fmt.Println("r ", r)
 	for i := 0; i < len(nodes); i++{
 		if nodes[i].method != httpMethod{
 			continue
@@ -113,6 +116,7 @@ func (r *Route) handleHttpRequest(c *Context){
 var mimePlain = []string{"text/plain"}
 
 func serveError(c *Context, code int, defaultMessage []byte){
+	fmt.Println("serveError")
 	c.writermem.status = code
 	if c.writermem.Written(){
 		return

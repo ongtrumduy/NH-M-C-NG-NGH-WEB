@@ -36,7 +36,7 @@ func addRoute(r *routefw.Route) *routefw.Route{
 var routers = []MyRoute{
 	{
 		name:    "hello",
-		path:    "/hello/:abc/:xyz/",
+		path:    "/hello/",
 		method:  "get",
 		handler: controller.Hello,
 	},

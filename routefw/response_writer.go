@@ -55,9 +55,10 @@ func (w *responseWriter) WriteHeaderNow(){
 }
 
 type ResponseWriter interface{
+	http.ResponseWriter
 	Write([]byte) (int, error)
 	WriteHeader(statusCode int)
-	//WriteHeaderNow()
+	WriteHeaderNow()
 }
 
 
