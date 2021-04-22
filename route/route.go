@@ -43,7 +43,7 @@ var routers = []MyRoute{
 	{
 		name:    "hello",
 		path:    "/hello/:abc/",
-		method:  "get",
+		method:  "post",
 		handler: controller.Hello1,
 	},
 }

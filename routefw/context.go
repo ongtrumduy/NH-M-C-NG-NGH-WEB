@@ -1,8 +1,11 @@
 package routefw
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/gin-gonic/gin/render"
 	"net/http"
+	"net/url"
 )
 
 type Context struct {
@@ -13,6 +16,7 @@ type Context struct {
 	fullPath 			string
 	Writer    			ResponseWriter
 	route				*Route
+	queryCache 			url.Values
 }
 
 func (c *Context) reset()  {
@@ -30,6 +34,8 @@ func(c *Context) Status(code int){
 	c.Writer.WriteHeader(code)
 }
 
+
+//handle json
 func (c *Context) Render(code int, r render.Render){
 	c.Status(code)
 	if !bodyAllowedForStatus(code){
@@ -44,4 +50,37 @@ func (c *Context) Render(code int, r render.Render){
 
 func (c *Context) JSON(code int, obj interface{}){
 	c.Render(code, render.AsciiJSON{Data: obj})
+}
+
+
+
+//handle query
+func(c *Context) Query(key string) string{
+	c.initQueryCache()
+	value, ok := c.queryCache[key]
+	if ok && len(value) > 0{
+		return value[0]
+	}else{
+		return ""
+	}
+}
+
+func (c *Context) initQueryCache(){
+	if c.queryCache == nil{
+		if c.Request != nil{
+			c.queryCache = c.Request.URL.Query()
+		}else{
+			c.queryCache = url.Values{}
+		}
+	}
+}
+
+//decode body to json
+func (c *Context) DecodeJson(obj interface{}) error{
+	body := c.Request.Body
+	err := json.NewDecoder(body).Decode(obj)
+	if err != nil{
+		fmt.Println("decode err ", err)
+	}
+	return err
 }
