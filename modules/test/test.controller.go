@@ -1,35 +1,28 @@
 package test
 
 import (
-	"context"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo/options"
-	"log"
-	"web/db"
-	"web/model"
+	"net/http"
+	"strconv"
+	"web/routefw"
 )
 
-func GetPaginateTest (level string, page int64, perPage int64) (a []model.Test){
-	var tests = [] model.Test{}
+func GetTestByIdController (c *routefw.Context) {
+	testId := c.Param("id")
+	var test = GetTestById(testId)
 
-	// filter
-	filter := bson.D{{ "level", level }}
-	skip := int64((page - 1) * perPage)
-	opts := options.FindOptions{
-		Skip: &skip,
-		Limit: &perPage,
-	}
-
-	// query
-	cursor, err := db.Find(model.Test{}.GetName(), filter, &opts)
-	if err = cursor.All(context.TODO(), &tests); err != nil {
-		log.Fatal(err)
-	}
-
-	return tests
+	c.JSON(http.StatusOK, test)
 }
 
-//func CreateTest() {
+func GetPaginateTestCotroller (c *routefw.Context) {
+	query := c.QueryAll()
+	page, _ := strconv.Atoi(query["page"])
+	perPage, _ := strconv.Atoi(query["perPage"])
+	var tests = GetPaginateTest(query["level"], page, perPage)
+
+	c.JSON(http.StatusOK, tests)
+}
+
+//func CreateTestController() {
 //	ans1 := model.Answer{
 //		Title: "1",
 //	}
@@ -70,7 +63,7 @@ func GetPaginateTest (level string, page int64, perPage int64) (a []model.Test){
 //	fmt.Println(questions, questions[0].Title)
 //}
 
-//func EvaluateTest(testId string, data bson.D) (a model.Test)  {
+//func EvaluateTestController(testId string, data bson.D) (a model.Test)  {
 //	var test =  model.Test{}
 //
 //	// lấy 1 test2

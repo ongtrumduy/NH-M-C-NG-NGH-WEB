@@ -2,6 +2,8 @@ package route
 
 import (
 	"web/controller"
+	"web/modules/question"
+	"web/modules/test"
 	"web/routefw"
 )
 
@@ -45,6 +47,30 @@ var routers = []MyRoute{
 		path:    "/hello/:abc/",
 		method:  "post",
 		handler: controller.Hello1,
+	},
+	{
+		name:    "creation_question",
+		path:    "/questions/",
+		method:  "post",
+		handler: question.CreateQuestionController,
+	},
+	{
+		name:    "get_question_by_testId",
+		path:    "/tests/:testId/questions/",
+		method:  "get",
+		handler: question.GetPaginateQuestionByTestIdController,
+	},
+	//{
+	//	name:    "get_test_by_id",
+	//	path:    "/tests/:id/",
+	//	method:  "get",
+	//	handler: test.GetTestByIdController,
+	//},
+	{
+		name:    "get_paginate_test",
+		path:    "/tests/",
+		method:  "get",
+		handler: test.GetPaginateTestCotroller,
 	},
 }
 

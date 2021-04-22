@@ -20,11 +20,11 @@ var (
 )
 
 func init(){
-	Client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
+	Client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://127.0.0.1:27017/"))
 	if err != nil{
 		panic(err)
 	}
-	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, _ := context.WithTimeout(context.Background(), 60*time.Second)
 	err = Client.Connect(ctx)
 	if err != nil{
 		panic(err)
@@ -83,13 +83,14 @@ func Find(collectionName string, filter interface{}, opts ...*options.FindOption
 func FindById(collectionName string, id string, opts ...*options.FindOneOptions) (a *mongo.SingleResult){
 	fmt.Println(DB_NAME)
 	collection := Client().Database(DB_NAME).Collection(collectionName)
+	fmt.Println("collection ", collection)
 	docID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("docid err ",err)
 	}
 	filter := bson.D{{ "_id", docID }}
 	cursor := collection.FindOne(CTX, filter, opts...)
-
+	fmt.Println("cursor ", cursor)
 	return cursor
 }
 

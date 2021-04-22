@@ -13,6 +13,7 @@ func Hello(c *routefw.Context){
 func Hello1(c *routefw.Context){
 	var x  Test
 	c.DecodeJson(&x)
+
 	fmt.Println(x)
 	m:=c.QueryAll()
 	for a, b := range m{
