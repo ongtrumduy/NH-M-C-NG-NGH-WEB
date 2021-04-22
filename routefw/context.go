@@ -75,6 +75,17 @@ func (c *Context) initQueryCache(){
 	}
 }
 
+func (c *Context) QueryAll() map[string]string{
+	c.initQueryCache()
+	m := make(map[string]string)
+	for key, value := range c.queryCache{
+		if len(value) > 0{
+			m[key] = value[0]
+		}
+	}
+	return m
+}
+
 //decode body to json
 func (c *Context) DecodeJson(obj interface{}) error{
 	body := c.Request.Body
