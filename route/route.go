@@ -40,7 +40,12 @@ var routers = []MyRoute{
 		method:  "get",
 		handler: controller.Hello,
 	},
-
+	{
+		name:    "hello",
+		path:    "/hello/:abc/",
+		method:  "get",
+		handler: controller.Hello1,
+	},
 }
 
 
