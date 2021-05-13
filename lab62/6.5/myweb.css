@@ -1,0 +1,49 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: powderblue;
+}
+
+#header {
+    /*background: #eedbc5;*/
+    width: 100%;
+    border-bottom: 1px solid black;
+
+}
+
+#sidebar {
+    float: left;
+    width: 17%;
+    height: 500px;
+    text-align: left;
+    padding-top: 30px;
+    font-size: 20px;
+}
+li {
+    margin: 0.5em 0;
+    padding: 0.3em;
+
+}
+#content {
+
+    float: left;
+    width: 60%;
+    height: 500px;
+}
+img {
+    width: 90%;
+    max-height: 400px;
+}
+
+#rightcol {
+    /*background: rgb(233, 233, 196);*/
+    float: right;
+    width: 20%;
+    height: 550px;
+}
+
+#footer {
+    /*background: rgb(192, 248, 206);*/
+    clear: both;
+    width: 100%;
+}
