@@ -2,8 +2,8 @@ package route
 
 import (
 	"web/controller"
-	"web/modules/question"
-	"web/modules/test"
+	"web/controller/question"
+	"web/controller/test"
 	"web/routefw"
 )
 

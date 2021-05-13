@@ -9,7 +9,7 @@ import (
 	"log"
 	"web/db"
 	"web/model"
-	"web/modules/test"
+	"web/controller/test"
 )
 
 func GetPaginateQuestionByTestId (testId string, page int, perPage int) (a []model.Question) {
