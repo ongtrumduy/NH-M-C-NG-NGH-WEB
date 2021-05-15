@@ -1,6 +1,7 @@
 package test
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 	"web/routefw"
@@ -63,15 +64,22 @@ func GetPaginateTestCotroller (c *routefw.Context) {
 //	fmt.Println(questions, questions[0].Title)
 //}
 
-//func EvaluateTestController(testId string, data bson.D) (a model.Test)  {
-//	var test =  model.Test{}
-//
-//	// lấy 1 test2
-//	testFind := db.FindById("exam", "tests", testId)
-//	decodeError := testFind.Decode(&test)
-//	if decodeError != nil {
-//		log.Println("Decode error: ", decodeError)
-//	}
-//
-//	return
-//}
+func EvaluateTestController(c *routefw.Context)  {
+	testId := c.Param("id")
+	data := BodyEvaluateTest{}
+	err := c.DecodeJson(data)
+	if err != nil{
+		fmt.Println(err)
+		c.JSON(http.StatusBadRequest, err)
+		return
+	}
+
+	var test = EvaluateTest(testId, data.UserId, data.Answers)
+
+	c.JSON(http.StatusOK, test)
+}
+
+type BodyEvaluateTest struct {
+	UserId string
+	Answers [] string
+}

@@ -84,6 +84,12 @@ var routers = []MyRoute{
 		method:  "post",
 		handler: controller.Logout,
 	},
+	{
+		name: 	"evaluateTest",
+		path:  	"/tests/:id/evaluate",
+		method: "post",
+		handler: test.EvaluateTestController,
+	},
 }
 
 

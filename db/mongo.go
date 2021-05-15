@@ -112,4 +112,26 @@ func DeleteMany(collectionName string, filter interface{}) error{
 	return err
 }
 
+func Aggregate(collectionName string, pipeline interface{}, opts ...*options.AggregateOptions) (a *mongo.Cursor, err error){
+	col := Client().Database(DB_NAME).Collection(collectionName)
+
+	cursor, err := col.Aggregate(CTX, pipeline, opts...)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return cursor, err
+}
+
+//func Update(collectionName string, filter interface{}, update interface{}, opts ...*options.UpdateOptions) (a *mongo.UpdateResult, err error) {
+//	col := Client().Database(DB_NAME).Collection(collectionName)
+//
+//	cursor, err := col.Up(CTX, filter, update, opts...)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//
+//	return cursor, err
+//}
+
 
