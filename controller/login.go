@@ -41,7 +41,7 @@ func Login(c *routefw.Context){
 		c.JSON(http.StatusUnprocessableEntity, err.Error())
 		return
 	}
-	saveErr := util.CreateAuth(u.ID, ts)
+	saveErr := util.CreateAuth(u.ID.String(), ts)
 	if saveErr != nil{
 		c.JSON(http.StatusUnprocessableEntity, saveErr)
 		return

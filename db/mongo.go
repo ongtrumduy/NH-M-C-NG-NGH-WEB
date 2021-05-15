@@ -100,6 +100,16 @@ func FindOne(collectionName string, filter interface{}) *mongo.SingleResult{
 	return result
 }
 
+func DeleteOne(collectionName string, filter interface{}) error{
+	col := Client().Database(DB_NAME).Collection(collectionName)
+	_, err := col.DeleteOne(CTX, filter)
+	return err
+}
 
+func DeleteMany(collectionName string, filter interface{}) error{
+	col := Client().Database(DB_NAME).Collection(collectionName)
+	_, err := col.DeleteMany(CTX, filter)
+	return err
+}
 
 

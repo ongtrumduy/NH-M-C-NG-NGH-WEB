@@ -43,12 +43,6 @@ var routers = []MyRoute{
 		handler: controller.Hello,
 	},
 	{
-		name:    "hello",
-		path:    "/hello/:abc/",
-		method:  "post",
-		handler: controller.Hello1,
-	},
-	{
 		name:    "creation_question",
 		path:    "/questions/",
 		method:  "post",
@@ -83,6 +77,12 @@ var routers = []MyRoute{
 		path:    "/login/",
 		method:  "post",
 		handler: controller.Login,
+	},
+	{
+		name:    "logout",
+		path:    "/logout/",
+		method:  "post",
+		handler: controller.Logout,
 	},
 }
 
