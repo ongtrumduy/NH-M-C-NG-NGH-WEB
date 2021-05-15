@@ -72,6 +72,18 @@ var routers = []MyRoute{
 		method:  "get",
 		handler: test.GetPaginateTestCotroller,
 	},
+	{
+		name:    "register",
+		path:    "/register/",
+		method:  "post",
+		handler: controller.Register,
+	},
+	{
+		name:    "login",
+		path:    "/login/",
+		method:  "post",
+		handler: controller.Login,
+	},
 }
 
 

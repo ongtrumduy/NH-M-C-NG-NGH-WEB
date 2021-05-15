@@ -7,9 +7,9 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
+	"web/controller/test"
 	"web/db"
 	"web/model"
-	"web/controller/test"
 )
 
 func GetPaginateQuestionByTestId (testId string, page int, perPage int) (a []model.Question) {
@@ -63,7 +63,7 @@ func CreateQuestion() {
 		Title:         	"question1",
 		Answers: 		ans,
 	}
-	db.InsertOne("exam", "questions", questionModel)
+	db.InsertOne("questions", questionModel)
 
 	filter := bson.D{{}}
 	_, err := db.Find(questionModel.GetCollectionName(), filter)

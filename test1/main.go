@@ -96,12 +96,12 @@ type TokenDetails struct {
 }
 
 
-func CreateToken(userid uint64) (*TokenDetails, error) {
+func CreateToken(userid int64) (*TokenDetails, error) {
 	td := &TokenDetails{}
 	td.AtExpires = time.Now().Add(time.Minute * 15).Unix()
 	td.AccessUuid = uuid.NewV4().String()
 
-	td.RtExpires = time.Now().Add(time.Hour * 24 * 7).Unix()
+	td.RtExpires = time.Now().Add(time.Hour * 24).Unix()
 	td.RefreshUuid = td.AccessUuid + "++" + strconv.Itoa(int(userid))
 
 
@@ -311,7 +311,7 @@ func Refresh(c *gin.Context) {
 			c.JSON(http.StatusUnprocessableEntity, err)
 			return
 		}
-		userId, err := strconv.ParseUint(fmt.Sprintf("%.f", claims["user_id"]), 10, 64)
+		userId, err := strconv.ParseInt(fmt.Sprintf("%.f", claims["user_id"]), 10, 64)
 		if err != nil {
 			c.JSON(http.StatusUnprocessableEntity, "Error occurred")
 			return

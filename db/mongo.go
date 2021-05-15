@@ -10,7 +10,6 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
 	"os"
-	"time"
 )
 
 var (
@@ -24,7 +23,7 @@ func init(){
 	if err != nil{
 		panic(err)
 	}
-	ctx, _ := context.WithTimeout(context.Background(), 60*time.Second)
+	ctx := context.Background()
 	err = Client.Connect(ctx)
 	if err != nil{
 		panic(err)
@@ -49,8 +48,8 @@ func Client() *mongo.Client{
 	return MongoClient
 }
 
-func InsertOne(databaseName string, collectionName string, data interface{}) (err error){
-	collection := Client().Database(databaseName).Collection(collectionName)
+func InsertOne(collectionName string, data interface{}) (err error){
+	collection := Client().Database(DB_NAME).Collection(collectionName)
 	_, err = collection.InsertOne(CTX, data)
 	fmt.Println(data)
 	return
@@ -92,6 +91,13 @@ func FindById(collectionName string, id string, opts ...*options.FindOneOptions)
 	cursor := collection.FindOne(CTX, filter, opts...)
 	fmt.Println("cursor ", cursor)
 	return cursor
+}
+
+func FindOne(collectionName string, filter interface{}) *mongo.SingleResult{
+	col := Client().Database(DB_NAME).Collection(collectionName)
+
+	result := col.FindOne(CTX, filter)
+	return result
 }
 
 
