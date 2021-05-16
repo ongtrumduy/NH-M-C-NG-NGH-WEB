@@ -5,50 +5,68 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"net/http"
 	"web/db"
-	"web/model"
+	"web/newModel"
 	"web/routefw"
 	"web/util"
 )
 
 func Login(c *routefw.Context){
 	fmt.Println("login")
-	user := &model.User{}
+	user := &newModel.User{}
 	err := c.DecodeJson(user)
+
 	if err != nil{
 		c.JSON(http.StatusUnprocessableEntity, "Invalid json provided")
 		return
 	}
+
+	fmt.Println("user ", user)
+
 	filter := bson.D{
 		{
-			"user_name", user.UserName,
+			"UserName", user.UserName,
 		},
 		{
-			"pass_word", user.PassWord,
+			"PassWord", user.PassWord,
 		},
 	}
 	result := db.FindOne("user", filter)
 	if result.Err() != nil{
-		c.JSON(http.StatusUnauthorized, "incorrect user name or password")
+		fmt.Println("invalid")
+		response := newModel.ResponseValidate{CheckValidate: "invalid"}
+		c.JSON(http.StatusOK, response)
 		return
 	}
-	u := model.User{}
+	u := newModel.User{}
 	result.Decode(&u)
 	if u.UserName != user.UserName || u.PassWord != user.PassWord{
-		c.JSON(http.StatusUnauthorized, "incorrect user name or password")
+		fmt.Println("incorrect user name or password")
+
+		c.JSON(http.StatusUnauthorized, newModel.ResponseValidate{CheckValidate: "invalid"})
+		return
 	}
 	ts, err := util.CreateToken(u.ID)
 	if err != nil{
+		fmt.Println("token err 1")
 		c.JSON(http.StatusUnprocessableEntity, err.Error())
 		return
 	}
 	saveErr := util.CreateAuth(u.ID.String(), ts)
 	if saveErr != nil{
+		fmt.Println("token err 2")
 		c.JSON(http.StatusUnprocessableEntity, saveErr)
 		return
 	}
-	tokens := map[string]string{
-		"access_token":  ts.AccessToken,
-		"refresh_token": ts.RefreshToken,
+	//tokens := map[string]string{
+	//	"access_token":  ts.AccessToken,
+	//	"refresh_token": ts.RefreshToken,
+	//}
+	fmt.Println("ok")
+	responseLogin := newModel.ResponseLogin{
+		CheckValidate: "success-login",
+		MemberID:      u.ID,
+		AccessToken:   ts.AccessToken,
+		RefreshToken:  ts.RefreshToken,
 	}
-	c.JSON(http.StatusOK, tokens)
+	c.JSON(http.StatusOK, responseLogin)
 }

@@ -28,7 +28,7 @@ func Register(c *routefw.Context){
 	result := db.FindOne("user", filter)
 	if result.Err() == nil{
 		fmt.Println("existed-username")
-		response := newModel.Response{CheckValidate: "existed-username"}
+		response := newModel.ResponseValidate{CheckValidate: "existed-username"}
 		c.JSON(http.StatusOK, response)
 		return
 	}
@@ -40,7 +40,7 @@ func Register(c *routefw.Context){
 	result = db.FindOne("user",filter)
 	if result.Err() == nil{
 		fmt.Println("existed-phonenumber")
-		response := newModel.Response{CheckValidate: "existed-phonenumber"}
+		response := newModel.ResponseValidate{CheckValidate: "existed-phonenumber"}
 		c.JSON(http.StatusOK, response)
 		return
 	}
@@ -51,7 +51,7 @@ func Register(c *routefw.Context){
 		c.JSON(http.StatusInternalServerError, err.Error())
 	}else{
 		fmt.Println( "success-register")
-		r := newModel.Response{CheckValidate:  "success-register"}
+		r := newModel.ResponseValidate{CheckValidate:  "success-register"}
 		c.JSON(http.StatusCreated, r)
 	}
 

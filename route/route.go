@@ -90,6 +90,12 @@ var routers = []MyRoute{
 		method: "post",
 		handler: test.EvaluateTestController,
 	},
+	{
+		name: 	"get full name",
+		path:  	"/getfullname",
+		method: "post",
+		handler: controller.GetFullName,
+	},
 }
 
 
