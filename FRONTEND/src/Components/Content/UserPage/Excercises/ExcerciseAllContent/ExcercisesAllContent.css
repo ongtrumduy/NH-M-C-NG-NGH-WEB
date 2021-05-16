@@ -1,0 +1,119 @@
+.user-excercises_all-list {
+    width: 100%;
+    height: 100%;
+}
+
+.user-excercises_all-list__select-choose {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin: 16px 0 0 0;
+    padding: 0 0 16px 0;
+    border-bottom: 2px solid black;
+}
+
+.user-excercises_all-list__select-choose___search {
+    flex: 1;
+}
+
+.user-excercises_all-list__select-choose___search input {
+    height: 24px;
+}
+
+.user-excercises_all-list__select-choose___search input:first-child {
+    width: 84%;
+    outline: none;
+    border: none;
+    border-bottom: groove;
+    margin: 0 12px 0 0;
+}
+
+.user-excercises_all-list__select-choose___search input:last-child {
+    cursor: pointer;
+}
+
+.user-excercises_all-list__select-choose___search input:first-child:focus {
+    border-bottom-color: green;
+}
+
+.user-excercises_all-list__select-choose span {
+    font-weight: bold;
+}
+
+.user-excercises_all-list__select-choose___excercise-list {
+    margin: 0 40px 0 0;
+}
+
+.user-excercises_all-list__select-choose___excercise-list input {
+    margin: 0 0 0 40px;
+    cursor: pointer;
+}
+
+.user-excercises_all__public-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.user-excercises_all__public-list___title {
+    margin: 0 0 0 28px;
+}
+
+.user-excercises_all__public-list___title p {
+    font-weight: bold;
+}
+
+.user-excercises_all__public-list___choice-index-content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: auto;
+    height: 300px;
+    user-select: none;
+    border: groove;
+    width: 99.5%;
+}
+
+.user-excercises_all__public-list___choice-index-content div {
+    height: 260px;
+    width: 260px;
+    background-color: rgb(197, 194, 194);
+    margin: 20px 20px 20px 28px;
+    cursor: pointer;
+}
+
+.user-excercises_all__public-list___choice-index-content div:hover {
+    background-color: rgb(219, 219, 219);
+}
+
+.user-excercises_all__public-list___control {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.user-excercises_all__public-list___control i {
+    cursor: pointer;
+}
+
+.user-excercises_all__public-list___control____index-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.user-excercises_all__public-list___control____index-item div {
+    margin: 0 12px 0 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.user-excercises_all__public-list___control____index-item div:hover {
+    color: rgb(255, 0, 0);
+}

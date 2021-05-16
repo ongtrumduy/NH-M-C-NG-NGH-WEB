@@ -92,7 +92,7 @@ var routers = []MyRoute{
 	},
 	{
 		name: 	"get full name",
-		path:  	"/getfullname",
+		path:  	"/getfullname/",
 		method: "post",
 		handler: controller.GetFullName,
 	},

@@ -1,0 +1,156 @@
+.user-chat {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    flex-grow: 0;
+}
+
+.user-chat_list {
+    border: 1px solid rgb(196, 196, 196);
+    background-color: white;
+    width: 24%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.user-chat_list__title {
+    width: 100%;
+    text-align: left;
+    margin: 0 0 0 48px;
+}
+
+.user-chat_list__content {
+    background-color: rgb(238, 238, 238);
+    width: 100%;
+    flex: 1;
+    overflow: auto;
+}
+
+.user-chat_list__content {
+    width: 100%;
+    height: 60px;
+}
+
+.user-chat_list__content div:hover {
+    background-color: rgb(221, 219, 219);
+    cursor: pointer;
+}
+
+.user-chat_list__content___infor {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.user-chat_list__content___infor_____avatar {
+    margin: 0 8px 0 8px;
+}
+
+.user-chat_content {
+    border: 1px solid rgb(173, 169, 169);
+    background-color: white;
+    flex: 1;
+    height: 100%;
+}
+
+.user-chat_content__menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    width: 100%;
+    border-bottom: 1px solid rgb(190, 190, 190);
+}
+
+.user-chat_content__menu img {
+    height: 54px;
+    width: 60px;
+    margin: 4px 0 0 12px;
+}
+
+.user-chat_content__menu p {
+    font-weight: bold;
+    margin: 0 0 0 12px;
+}
+
+.user-chat_content__menu button {
+    border: none;
+    font-size: 16px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.user-chat_content__menu button:hover {
+    color: red;
+}
+
+.user-chat_content__menu button:focus {
+    color: blue;
+    border-bottom: groove;
+    outline: none;
+    border-bottom-color: rgb(216, 215, 215);
+    font-weight: bold;
+}
+
+.user-chat_content__menu button:first-child {
+    margin: 0 0 0 32px;
+}
+
+.user-chat_content__callsetting {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: row;
+    flex: 1;
+}
+
+.user-chat_content__callsetting___call {
+    margin: 0 12px 0 0;
+    width: 60px;
+}
+
+.user-chat_content__callsetting___setting {
+    margin: 0 40px 0 0;
+}
+
+.user-chat_content__message___content {
+    height: 460px;
+    overflow: auto;
+}
+
+.user-chat_content__message___chat-send {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+.user-chat_content__message___chat-send div:first-child {
+    width: 98%;
+}
+
+.user-chat_content__message___chat-send div:first-child input {
+    width: 98%;
+    height: 24px;
+    border: none;
+    border-bottom: groove;
+    outline: none;
+}
+
+.user-chat_content__message___chat-send div:first-child input:focus {
+    border-bottom-color: blue;
+}
+
+.user-chat_content__message___chat-send div:last-child i {
+    cursor: pointer;
+}
+
+.user-chat_content__message___chat-send div:last-child i:hover {
+    color: red;
+}
