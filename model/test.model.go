@@ -17,7 +17,3 @@ type Result struct {
 func(t Test) GetCollectionName() (s string) {
 	return "tests"
 }
-
-
-
-

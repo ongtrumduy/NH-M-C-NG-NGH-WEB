@@ -134,4 +134,7 @@ func Aggregate(collectionName string, pipeline interface{}, opts ...*options.Agg
 //	return cursor, err
 //}
 
-
+func FindOneAndUpdate(collection string, filter interface{}, update interface{}, opts ...*options.FindOneAndUpdateOptions) error{
+	col := Client().Database(DB_NAME).Collection(collection)
+	return col.FindOneAndUpdate(CTX, filter, update).Err()
+}
