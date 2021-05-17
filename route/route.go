@@ -44,13 +44,13 @@ var routers = []MyRoute{
 	},
 	{
 		name:    "creation_question",
-		path:    "/questions/tests/:testId",
+		path:    "/tests/questions/:testId/",
 		method:  "post",
 		handler: question.CreateQuestionController,
 	},
 	{
 		name:    "get_question_by_testId",
-		path:    "/tests/:testId/questions/",
+		path:    "/tests/questions/:testId/",
 		method:  "get",
 		handler: question.GetPaginateQuestionByTestIdController,
 	},
@@ -92,7 +92,7 @@ var routers = []MyRoute{
 	},
 	{
 		name: 	"evaluateTest",
-		path:  	"/tests/:id/evaluate",
+		path:  	"/tests/evaluate/:testId/",
 		method: "post",
 		handler: test.EvaluateTestController,
 	},
