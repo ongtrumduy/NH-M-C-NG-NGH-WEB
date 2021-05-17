@@ -328,7 +328,7 @@ export default class ExcercisesPublicList extends React.Component {
     console.log("RA thằng cu này xem sao ", allNumberOfIndexOfExcercise);
     if (allNumberOfIndexOfExcercise === 1) {
       return (
-        <div className="user-excercises_all__public-list___control____index-item">
+        <div className="user-Excercises_all__public-list___control____index-item">
           {currentIndexOfChoiceIndexExcerciseList.map(numberindexitem => (
             <div
               key={numberindexitem}
@@ -342,7 +342,7 @@ export default class ExcercisesPublicList extends React.Component {
       );
     } else {
       return (
-        <div className="user-excercises_all__public-list___control____index-item">
+        <div className="user-Excercises_all__public-list___control____index-item">
           {currentIndexOfChoiceIndexExcerciseList.map(numberindexitem => (
             <div
               key={numberindexitem}
@@ -360,7 +360,7 @@ export default class ExcercisesPublicList extends React.Component {
 
   selectIndexForRenderExcerciseItem = () => {
     return (
-      <div className="user-excercises_all__public-list___control">
+      <div className="user-Excercises_all__public-list___control">
         <div>
           <i
             style={
@@ -410,11 +410,11 @@ export default class ExcercisesPublicList extends React.Component {
     );
 
     return (
-      <div className="user-excercises_all__public-list___choice-index-content">
-        {currentChoiceIndexExcerciseList.map(excerciseitem =>
-          excerciseitem.ExcerciseInfor.map(
-            (excercisenameitem, excerciseindex) => (
-              <div key={excerciseindex}>
+      <div className="user-Excercises_all__public-list___choice-index-content">
+        {currentChoiceIndexExcerciseList.map(Excerciseitem =>
+          Excerciseitem.ExcerciseInfor.map(
+            (Excercisenameitem, Excerciseindex) => (
+              <div key={Excerciseindex}>
                 <img
                   style={{
                     height: "120px",
@@ -425,7 +425,7 @@ export default class ExcercisesPublicList extends React.Component {
                   src={de111}
                 />
                 <p style={{ fontWeight: "bold" }}>
-                  {excercisenameitem.ExcerciseName}
+                  {Excercisenameitem.ExcerciseName}
                 </p>
               </div>
             )
@@ -437,8 +437,8 @@ export default class ExcercisesPublicList extends React.Component {
 
   render() {
     return (
-      <div className="user-excercises_all__public-list">
-        <div className="user-excercises_all__public-list___title">
+      <div className="user-Excercises_all__public-list">
+        <div className="user-Excercises_all__public-list___title">
           <p>Bộ đề - Bài tập Công khai</p>
         </div>
         {this.renderChooseIndexExcercisePublicList()}

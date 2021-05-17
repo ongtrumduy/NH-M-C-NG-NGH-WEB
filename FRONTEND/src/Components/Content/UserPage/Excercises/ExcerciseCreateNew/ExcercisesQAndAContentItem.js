@@ -107,8 +107,8 @@ export default class ExcercisesQAndAContentItem extends React.Component {
 
   createNewExcerciseQAContent = () => {
     return (
-      <div className="user-excercises_create-new__QandA___content">
-        <div className="user-excercises_create-new__QandA___content___question">
+      <div className="user-Excercises_create-new__QandA___content">
+        <div className="user-Excercises_create-new__QandA___content___question">
           <p>Câu hỏi số {this.props.ExcerciseNthQuestion}: </p>
           <input
             type="text"
@@ -123,9 +123,9 @@ export default class ExcercisesQAndAContentItem extends React.Component {
             placeholder="Nhập nội dung câu hỏi..."
           />
         </div>
-        <div className="user-excercises_create-new__QandA___content____answer">
-          <div className="user-excercises_create-new__QandA___content____answer_____A">
-            <div className="user-excercises_create-new__QandA___content____answer_____A______choose">
+        <div className="user-Excercises_create-new__QandA___content____answer">
+          <div className="user-Excercises_create-new__QandA___content____answer_____A">
+            <div className="user-Excercises_create-new__QandA___content____answer_____A______choose">
               <input
                 type="radio"
                 name="ExcerciseCorrectAnswer"
@@ -139,7 +139,7 @@ export default class ExcercisesQAndAContentItem extends React.Component {
                 onChange={event => this.handleValueExcerciseQAItem(event)}
               />
             </div>
-            <div className="user-excercises_create-new__QandA___content____answer_____A______answer-content">
+            <div className="user-Excercises_create-new__QandA___content____answer_____A______answer-content">
               <span>Đáp án A: </span>
               <input
                 type="text"
@@ -155,8 +155,8 @@ export default class ExcercisesQAndAContentItem extends React.Component {
               />
             </div>
           </div>
-          <div className="user-excercises_create-new__QandA___content____answer_____B">
-            <div className="user-excercises_create-new__QandA___content____answer_____B______choose">
+          <div className="user-Excercises_create-new__QandA___content____answer_____B">
+            <div className="user-Excercises_create-new__QandA___content____answer_____B______choose">
               <input
                 type="radio"
                 name="ExcerciseCorrectAnswer"
@@ -170,7 +170,7 @@ export default class ExcercisesQAndAContentItem extends React.Component {
                 onChange={event => this.handleValueExcerciseQAItem(event)}
               />
             </div>
-            <div className="user-excercises_create-new__QandA___content____answer_____B______answer-content">
+            <div className="user-Excercises_create-new__QandA___content____answer_____B______answer-content">
               <span>Đáp án B: </span>
               <input
                 type="text"
@@ -186,8 +186,8 @@ export default class ExcercisesQAndAContentItem extends React.Component {
               />
             </div>
           </div>
-          <div className="user-excercises_create-new__QandA___content____answer_____C">
-            <div className="user-excercises_create-new__QandA___content____answer_____C______choose">
+          <div className="user-Excercises_create-new__QandA___content____answer_____C">
+            <div className="user-Excercises_create-new__QandA___content____answer_____C______choose">
               <input
                 type="radio"
                 name="ExcerciseCorrectAnswer"
@@ -201,7 +201,7 @@ export default class ExcercisesQAndAContentItem extends React.Component {
                 onChange={event => this.handleValueExcerciseQAItem(event)}
               />
             </div>
-            <div className="user-excercises_create-new__QandA___content____answer_____C______answer-content">
+            <div className="user-Excercises_create-new__QandA___content____answer_____C______answer-content">
               <span>Đáp án C: </span>
               <input
                 type="text"
@@ -217,8 +217,8 @@ export default class ExcercisesQAndAContentItem extends React.Component {
               />
             </div>
           </div>
-          <div className="user-excercises_create-new__QandA___content____answer_____D">
-            <div className="user-excercises_create-new__QandA___content____answer_____D______choose">
+          <div className="user-Excercises_create-new__QandA___content____answer_____D">
+            <div className="user-Excercises_create-new__QandA___content____answer_____D______choose">
               <input
                 type="radio"
                 name="ExcerciseCorrectAnswer"
@@ -232,7 +232,7 @@ export default class ExcercisesQAndAContentItem extends React.Component {
                 onChange={event => this.handleValueExcerciseQAItem(event)}
               />
             </div>
-            <div className="user-excercises_create-new__QandA___content____answer_____D______answer-content">
+            <div className="user-Excercises_create-new__QandA___content____answer_____D______answer-content">
               <span>Đáp án D: </span>
               <input
                 type="text"
@@ -249,7 +249,7 @@ export default class ExcercisesQAndAContentItem extends React.Component {
             </div>
           </div>
         </div>
-        <div className="user-excercises_create-new__QandA___content___confirm-content">
+        <div className="user-Excercises_create-new__QandA___content___confirm-content">
           {this.props.ExcerciseQuestionContent === "" ||
           this.state.changeToEditMode ? (
             <button onClick={() => this.handleValueExcerciseToAllQAContent()}>

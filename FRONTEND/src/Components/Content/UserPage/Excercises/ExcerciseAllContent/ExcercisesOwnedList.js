@@ -9,7 +9,7 @@ export default class ExcercisesOwnedList extends React.Component {
 
   componentDidMount = () => {
     axios
-      .post("/getexcercisepublixclist", {
+      .post("/getExcercisepublixclist", {
         MemberID: this.props.MemberID
       })
       .then(res => {
@@ -25,19 +25,19 @@ export default class ExcercisesOwnedList extends React.Component {
 
   chooseOneJoinedExcercise = ExcerciseID => {
     this.props.getExcerciseIDMemberChoice(ExcerciseID);
-    this.props.updateRenderTeamControl("excercisecontent");
+    this.props.updateRenderTeamControl("Excercisecontent");
   };
 
   render() {
     return (
       <div className="user-teams_all__list">
-        {/* {this.state.AllExcercisePublicList.map((excerciseitem, teamindex) =>
+        {/* {this.state.AllExcercisePublicList.map((Excerciseitem, teamindex) =>
           teamitem.TeamInfor.map(teamnameitem => (
             <TeamsItem
               key={teamindex}
-              TeamID={excerciseitem.TeamID}
-              TeamLogo={excerciseitem.TeamLogo}
-              TeamName={excerciseitem.TeamName}
+              TeamID={Excerciseitem.TeamID}
+              TeamLogo={Excerciseitem.TeamLogo}
+              TeamName={Excerciseitem.TeamName}
               chooseOneJoinedTeam={this.chooseOneJoinedTeam}
             />
           ))

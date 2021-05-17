@@ -1,10 +1,10 @@
-.user-excercises_create-new__main {
+.user-Excercises_create-new__main {
     height: 100%;
     width: 100%;
     user-select: none;
 }
 
-.user-excercises_create-new__main___backtoexcerciseall {
+.user-Excercises_create-new__main___backtoExcerciseall {
     margin: 40px 0 0 40px;
     border: none;
     width: 100px;
@@ -18,12 +18,12 @@
     transition: box-shadow 0.3s;
 }
 
-.user-excercises_create-new__main___backtoexcerciseall:hover {
+.user-Excercises_create-new__main___backtoExcerciseall:hover {
     color: red;
     box-shadow: 0 3px rgb(0, 255, 64);
 }
 
-.user-excercises_create-new__main___excercise {
+.user-Excercises_create-new__main___Excercise {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -31,7 +31,7 @@
     width: 100%;
 }
 
-.user-excercises_create-new__main___excercise____form {
+.user-Excercises_create-new__main___Excercise____form {
     background-color: rgb(255, 255, 255);
     margin: 8px 0 0 120px;
     width: 64%;
@@ -41,57 +41,57 @@
     align-items: flex-start;
 }
 
-.user-excercises_create-new__main___excercise____form input {
+.user-Excercises_create-new__main___Excercise____form input {
     width: 100%;
 }
 
-.user-excercises_create-new__main___excercise____form div:first-child {
+.user-Excercises_create-new__main___Excercise____form div:first-child {
     width: 72%;
 }
 
-.user-excercises_create-new__main___excercise____form div:last-child button {
+.user-Excercises_create-new__main___Excercise____form div:last-child button {
     border-style: groove;
     border-radius: 4px;
     height: 32px;
     cursor: pointer;
 }
 
-.user-excercises_create-new__main___excercise____form div:last-child button:focus {
+.user-Excercises_create-new__main___Excercise____form div:last-child button:focus {
     background-color: rgb(196, 196, 196);
 }
 
-.user-excercises_create-new__main___excercise____form p {
+.user-Excercises_create-new__main___Excercise____form p {
     font-weight: bold;
     text-align: left;
 }
 
-.user-excercises_create-new__main___excercise____form input {
+.user-Excercises_create-new__main___Excercise____form input {
     border: none;
     border-bottom: groove;
     border-color: rgb(226, 226, 226);
 }
 
-.user-excercises_create-new__main___excercise____form input:focus {
+.user-Excercises_create-new__main___Excercise____form input:focus {
     outline: none;
     border-color: green
 }
 
-.user-excercises_create-new__main___excercise____form select {
+.user-Excercises_create-new__main___Excercise____form select {
     width: 40%;
     border: none;
     border-bottom: groove;
 }
 
-.user-excercises_create-new__main___excercise____form option {
+.user-Excercises_create-new__main___Excercise____form option {
     border-color: rgb(226, 226, 226);
 }
 
-.user-excercises_create-new__main___excercise____form select:focus {
+.user-Excercises_create-new__main___Excercise____form select:focus {
     outline: none;
     border-color: green
 }
 
-.user-excercises_create__excercise___response-create-excercise {
+.user-Excercises_create__Excercise___response-create-Excercise {
     height: 0px;
     width: 100%;
     margin: 0px 0 40px 0;
@@ -99,7 +99,7 @@
     font-weight: bold;
 }
 
-.user-excercises_create__excercise___form____create-button input {
+.user-Excercises_create__Excercise___form____create-button input {
     border: solid 1px black;
     cursor: pointer;
     height: 32px;
@@ -108,15 +108,15 @@
     font-weight: bold;
 }
 
-.user-excercises_create__excercise___form____create-button input:hover {
+.user-Excercises_create__Excercise___form____create-button input:hover {
     color: rgb(255, 2, 2);
 }
 
-.user-excercises_create__excercise___form____create-button input:focus {
+.user-Excercises_create__Excercise___form____create-button input:focus {
     color: rgb(91, 2, 255);
 }
 
-.user-excercises_create__excercise___excercise-logo {
+.user-Excercises_create__Excercise___Excercise-logo {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -124,47 +124,47 @@
     align-items: flex-start;
 }
 
-.user-excercises_create__excercise___excercise-logo div:first-child {
+.user-Excercises_create__Excercise___Excercise-logo div:first-child {
     border: groove;
     margin: 20px 0 0 0;
     float: left;
 }
 
-.user-excercises_create__excercise___excercise-logo div:first-child img {
+.user-Excercises_create__Excercise___Excercise-logo div:first-child img {
     height: 180px;
     width: 180px;
 }
 
-.user-excercises_create__excercise___excercise-logo div:last-child p {
+.user-Excercises_create__Excercise___Excercise-logo div:last-child p {
     font-weight: bold;
     margin: 12px 0 0 -16px;
 }
 
-.user-excercises_create__excercise___form____radio-button {
+.user-Excercises_create__Excercise___form____radio-button {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
 }
 
-.user-excercises_create__excercise___form____radio-button div {
+.user-Excercises_create__Excercise___form____radio-button div {
     flex: 1
 }
 
-.user-excercises_create__excercise___form____radio-button input {
+.user-Excercises_create__Excercise___form____radio-button input {
     height: 20px;
     cursor: pointer;
 }
 
-.user-excercises_create__excercise___form____radio-button span {
+.user-Excercises_create__Excercise___form____radio-button span {
     margin: 0 0 0 -100px;
 }
 
-.user-excercises_create-new__QandA {
+.user-Excercises_create-new__QandA {
     width: 100%;
 }
 
-.user-excercises_create-new__QandA___backtoexcerciseall {
+.user-Excercises_create-new__QandA___backtoExcerciseall {
     margin: 40px 0 0 40px;
     border: none;
     width: 100px;
@@ -178,12 +178,12 @@
     transition: box-shadow 0.3s;
 }
 
-.user-excercises_create-new__QandA___backtoexcerciseall:hover {
+.user-Excercises_create-new__QandA___backtoExcerciseall:hover {
     color: red;
     box-shadow: 0 3px rgb(0, 255, 64);
 }
 
-.user-excercises_create-new__QandA___infor {
+.user-Excercises_create-new__QandA___infor {
     font-weight: bold;
     display: flex;
     flex-direction: row;
@@ -192,21 +192,21 @@
     width: 100%;
 }
 
-.user-excercises_create-new__QandA___infor div:nth-child(2) {
+.user-Excercises_create-new__QandA___infor div:nth-child(2) {
     width: 48%;
 }
 
-.user-excercises_create-new__QandA___infor img {
+.user-Excercises_create-new__QandA___infor img {
     width: 60px;
     height: 60px;
     border: groove;
 }
 
-.user-excercises_create-new__QandA___infor div {
+.user-Excercises_create-new__QandA___infor div {
     margin: 16px 0 0 40px;
 }
 
-.user-excercises_create-new__QandA___content {
+.user-Excercises_create-new__QandA___content {
     font-weight: bold;
     display: flex;
     flex-direction: column;
@@ -215,7 +215,7 @@
     width: 100%;
 }
 
-.user-excercises_create-new__QandA___content___question {
+.user-Excercises_create-new__QandA___content___question {
     font-weight: bold;
     display: flex;
     flex-direction: row;
@@ -226,7 +226,7 @@
     /* border: groove; */
 }
 
-.user-excercises_create-new__QandA___content___question input {
+.user-Excercises_create-new__QandA___content___question input {
     width: 72%;
     margin: 0 0 0 16px;
     border: none;
@@ -234,15 +234,15 @@
     outline: none;
 }
 
-.user-excercises_create-new__QandA___content___question input:hover {
+.user-Excercises_create-new__QandA___content___question input:hover {
     border-bottom-color: blue;
 }
 
-.user-excercises_create-new__QandA___content___question input:focus {
+.user-Excercises_create-new__QandA___content___question input:focus {
     border-bottom-color: green;
 }
 
-.user-excercises_create-new__QandA___content____answer {
+.user-Excercises_create-new__QandA___content____answer {
     display: flex;
     flex-direction: column;
     justify-content: stretch;
@@ -252,7 +252,7 @@
     /* border: groove; */
 }
 
-.user-excercises_create-new__QandA___content____answer_____A {
+.user-Excercises_create-new__QandA___content____answer_____A {
     display: flex;
     flex-direction: row;
     justify-content: stretch;
@@ -262,16 +262,16 @@
     width: 94%;
 }
 
-.user-excercises_create-new__QandA___content____answer_____A______choose input {
+.user-Excercises_create-new__QandA___content____answer_____A______choose input {
     cursor: pointer;
 }
 
-.user-excercises_create-new__QandA___content____answer_____A______answer-content {
+.user-Excercises_create-new__QandA___content____answer_____A______answer-content {
     width: 80%;
     text-align: left;
 }
 
-.user-excercises_create-new__QandA___content____answer_____A______answer-content input {
+.user-Excercises_create-new__QandA___content____answer_____A______answer-content input {
     margin: 0 0 0 16px;
     border: none;
     border-bottom: 1px solid black;
@@ -280,15 +280,15 @@
     width: 85%;
 }
 
-.user-excercises_create-new__QandA___content____answer_____A______answer-content input:hover {
+.user-Excercises_create-new__QandA___content____answer_____A______answer-content input:hover {
     border-bottom-color: blue;
 }
 
-.user-excercises_create-new__QandA___content____answer_____A______answer-content input:focus {
+.user-Excercises_create-new__QandA___content____answer_____A______answer-content input:focus {
     border-bottom-color: green;
 }
 
-.user-excercises_create-new__QandA___content____answer_____B {
+.user-Excercises_create-new__QandA___content____answer_____B {
     display: flex;
     flex-direction: row;
     justify-content: stretch;
@@ -298,16 +298,16 @@
     width: 94%;
 }
 
-.user-excercises_create-new__QandA___content____answer_____B______choose input {
+.user-Excercises_create-new__QandA___content____answer_____B______choose input {
     cursor: pointer;
 }
 
-.user-excercises_create-new__QandA___content____answer_____B______answer-content {
+.user-Excercises_create-new__QandA___content____answer_____B______answer-content {
     width: 80%;
     text-align: left;
 }
 
-.user-excercises_create-new__QandA___content____answer_____B______answer-content input {
+.user-Excercises_create-new__QandA___content____answer_____B______answer-content input {
     margin: 0 0 0 16px;
     border: none;
     border-bottom: 1px solid black;
@@ -316,15 +316,15 @@
     width: 85%;
 }
 
-.user-excercises_create-new__QandA___content____answer_____B______answer-content input:hover {
+.user-Excercises_create-new__QandA___content____answer_____B______answer-content input:hover {
     border-bottom-color: blue;
 }
 
-.user-excercises_create-new__QandA___content____answer_____B______answer-content input:focus {
+.user-Excercises_create-new__QandA___content____answer_____B______answer-content input:focus {
     border-bottom-color: green;
 }
 
-.user-excercises_create-new__QandA___content____answer_____C {
+.user-Excercises_create-new__QandA___content____answer_____C {
     display: flex;
     flex-direction: row;
     justify-content: stretch;
@@ -334,16 +334,16 @@
     width: 94%;
 }
 
-.user-excercises_create-new__QandA___content____answer_____C______choose input {
+.user-Excercises_create-new__QandA___content____answer_____C______choose input {
     cursor: pointer;
 }
 
-.user-excercises_create-new__QandA___content____answer_____C______answer-content {
+.user-Excercises_create-new__QandA___content____answer_____C______answer-content {
     width: 80%;
     text-align: left;
 }
 
-.user-excercises_create-new__QandA___content____answer_____C______answer-content input {
+.user-Excercises_create-new__QandA___content____answer_____C______answer-content input {
     margin: 0 0 0 16px;
     border: none;
     border-bottom: 1px solid black;
@@ -352,15 +352,15 @@
     width: 85%;
 }
 
-.user-excercises_create-new__QandA___content____answer_____C______answer-content input:hover {
+.user-Excercises_create-new__QandA___content____answer_____C______answer-content input:hover {
     border-bottom-color: blue;
 }
 
-.user-excercises_create-new__QandA___content____answer_____C______answer-content input:focus {
+.user-Excercises_create-new__QandA___content____answer_____C______answer-content input:focus {
     border-bottom-color: green;
 }
 
-.user-excercises_create-new__QandA___content____answer_____D {
+.user-Excercises_create-new__QandA___content____answer_____D {
     display: flex;
     flex-direction: row;
     justify-content: stretch;
@@ -370,16 +370,16 @@
     width: 94%;
 }
 
-.user-excercises_create-new__QandA___content____answer_____D______choose input {
+.user-Excercises_create-new__QandA___content____answer_____D______choose input {
     cursor: pointer;
 }
 
-.user-excercises_create-new__QandA___content____answer_____D______answer-content {
+.user-Excercises_create-new__QandA___content____answer_____D______answer-content {
     width: 80%;
     text-align: left;
 }
 
-.user-excercises_create-new__QandA___content____answer_____D______answer-content input {
+.user-Excercises_create-new__QandA___content____answer_____D______answer-content input {
     margin: 0 0 0 16px;
     border: none;
     border-bottom: 1px solid black;
@@ -388,15 +388,15 @@
     width: 85%;
 }
 
-.user-excercises_create-new__QandA___content____answer_____D______answer-content input:hover {
+.user-Excercises_create-new__QandA___content____answer_____D______answer-content input:hover {
     border-bottom-color: blue;
 }
 
-.user-excercises_create-new__QandA___content____answer_____D______answer-content input:focus {
+.user-Excercises_create-new__QandA___content____answer_____D______answer-content input:focus {
     border-bottom-color: green;
 }
 
-.user-excercises_create-new__QandA___control {
+.user-Excercises_create-new__QandA___control {
     margin: 40px 0 0 196px;
     display: flex;
     flex-direction: row;
@@ -404,7 +404,7 @@
     align-items: center;
 }
 
-.user-excercises_create-new__QandA___control i {
+.user-Excercises_create-new__QandA___control i {
     font-weight: bold;
     color: blue;
     cursor: pointer;
@@ -412,7 +412,7 @@
     user-select: none;
 }
 
-.user-excercises_create-new__QandA___control input {
+.user-Excercises_create-new__QandA___control input {
     height: 32px;
     width: 120px;
     margin: 0 0 0 84px;
@@ -420,11 +420,11 @@
     cursor: pointer;
 }
 
-.user-excercises_create-new__QandA___content___confirm-content {
+.user-Excercises_create-new__QandA___content___confirm-content {
     margin: 24px 0 0 0;
 }
 
-.user-excercises_create-new__QandA___content___confirm-content button {
+.user-Excercises_create-new__QandA___content___confirm-content button {
     height: 28px;
     background-color: rgb(219, 219, 219);
     cursor: pointer;

@@ -96,6 +96,18 @@ var routers = []MyRoute{
 		method: "post",
 		handler: controller.GetFullName,
 	},
+	{
+		name: 	"create new Excercise content",
+		path:  	"/createnewexcercisecontent/",
+		method: "post",
+		handler: controller.CreateNewExerciseContent,
+	},
+	{
+		name: 	"update Excercise qa content",
+		path:  	"/updateexcerciseqa/",
+		method: "post",
+		handler: controller.UpdateExcerciseQA,
+	},
 }
 
 

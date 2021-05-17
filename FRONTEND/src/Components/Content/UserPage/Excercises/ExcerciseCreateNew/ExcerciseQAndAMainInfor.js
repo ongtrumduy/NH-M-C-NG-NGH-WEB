@@ -8,11 +8,11 @@ export default class ExcercisesQAndAMainInfor extends React.Component {
 
   render() {
     return (
-      <div className="user-excercises_create-new__QandA">
+      <div className="user-Excercises_create-new__QandA">
         <div
-          className="user-excercises_create-new__QandA___backtoexcerciseall"
+          className="user-Excercises_create-new__QandA___backtoExcerciseall"
           onClick={() =>
-            this.props.updateRenderExcerciseControl("excerciseall")
+            this.props.updateRenderExcerciseControl("Excerciseall")
           }
         >
           <div>
@@ -22,9 +22,9 @@ export default class ExcercisesQAndAMainInfor extends React.Component {
             <span>Hủy tạo </span>
           </div>
         </div>
-        <div className="user-excercises_create-new__QandA___infor">
+        <div className="user-Excercises_create-new__QandA___infor">
           <div>
-            <img src={this.props.ExcerciseLogo} alt="excercise-logo" />
+            <img src={this.props.ExcerciseLogo} alt="Excercise-logo" />
           </div>
           <div>
             <p>Tên Bộ đề - Bài tập: {this.props.ExcerciseName}</p>
