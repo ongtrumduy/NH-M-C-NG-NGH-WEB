@@ -17,7 +17,7 @@ func ExerciseCreateNewContent(c *routefw.Context)  {
 		return
 	}
 	fmt.Println("exercise ", exercise)
-	err = db.InsertOne("exercise", exercise)
+	_, err = db.InsertOne("exercise", exercise)
 	if err != nil{
 		c.JSON(http.StatusBadRequest, err)
 	}

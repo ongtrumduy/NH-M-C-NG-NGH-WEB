@@ -48,17 +48,20 @@ func Client() *mongo.Client{
 	return MongoClient
 }
 
-func InsertOne(collectionName string, data interface{}) (err error){
+func InsertOne(collectionName string, data interface{}) (cursor *mongo.InsertOneResult, err error){
 	collection := Client().Database(DB_NAME).Collection(collectionName)
-	_, err = collection.InsertOne(CTX, data)
+	cursor, err = collection.InsertOne(CTX, data)
 	fmt.Println(data)
-	return
+	if err != nil {
+		fmt.Println(err)
+	}
+	return cursor, err
 }
 
-func InsertMany(databaseName string, collectionName string, data []interface{})(err error){
-	collection := Client().Database(databaseName).Collection(collectionName)
-	_, err = collection.InsertMany(CTX, data)
-	return
+func InsertMany(collectionName string, data []interface{})(cursor *mongo.InsertManyResult, err error){
+	collection := Client().Database(DB_NAME).Collection(collectionName)
+	cursor, err = collection.InsertMany(CTX, data)
+	return cursor, err
 }
 
 
@@ -115,6 +118,7 @@ func DeleteMany(collectionName string, filter interface{}) error{
 func Aggregate(collectionName string, pipeline interface{}, opts ...*options.AggregateOptions) (a *mongo.Cursor, err error){
 	col := Client().Database(DB_NAME).Collection(collectionName)
 
+	fmt.Println(pipeline)
 	cursor, err := col.Aggregate(CTX, pipeline, opts...)
 	if err != nil {
 		log.Fatal(err)
@@ -123,16 +127,16 @@ func Aggregate(collectionName string, pipeline interface{}, opts ...*options.Agg
 	return cursor, err
 }
 
-//func Update(collectionName string, filter interface{}, update interface{}, opts ...*options.UpdateOptions) (a *mongo.UpdateResult, err error) {
-//	col := Client().Database(DB_NAME).Collection(collectionName)
-//
-//	cursor, err := col.Up(CTX, filter, update, opts...)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//
-//	return cursor, err
-//}
+func UpdateOne(collectionName string, filter interface{}, update interface{}, opts ...*options.UpdateOptions) (a *mongo.UpdateResult, err error) {
+	col := Client().Database(DB_NAME).Collection(collectionName)
+
+	cursor, err := col.UpdateOne(CTX, filter, update, opts...)
+	if err != nil {
+		log.Fatal("888",err)
+	}
+
+	return cursor, err
+}
 
 func FindOneAndUpdate(collection string, filter interface{}, update interface{}, opts ...*options.FindOneAndUpdateOptions) error{
 	col := Client().Database(DB_NAME).Collection(collection)

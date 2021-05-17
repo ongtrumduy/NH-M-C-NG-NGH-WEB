@@ -89,6 +89,7 @@ func (c *Context) QueryAll() map[string]string{
 //decode body to json
 func (c *Context) DecodeJson(obj interface{}) error{
 	body := c.Request.Body
+	fmt.Println(body)
 	err := json.NewDecoder(body).Decode(obj)
 	if err != nil{
 		fmt.Println("decode err ", err)

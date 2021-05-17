@@ -12,6 +12,7 @@ import (
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/bsoncodec"
+	"fmt"
 )
 
 // ErrNoDocuments is returned by SingleResult methods when the operation that created the SingleResult did not return
@@ -35,16 +36,22 @@ type SingleResult struct {
 // If the operation was successful and returned a document, Decode will return any errors from the unmarshalling process
 // without any modification. If v is nil or is a typed nil, an error will be returned.
 func (sr *SingleResult) Decode(v interface{}) error {
+
 	if sr.err != nil {
+
 		return sr.err
 	}
+
 	if sr.reg == nil {
 		return bson.ErrNilRegistry
 	}
 
 	if sr.err = sr.setRdrContents(); sr.err != nil {
+
 		return sr.err
 	}
+	fmt.Println("777", sr.reg, sr.rdr, v)
+
 	return bson.UnmarshalWithRegistry(sr.reg, sr.rdr, v)
 }
 

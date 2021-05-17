@@ -56,7 +56,7 @@ func CreateAuth(userId string, details *model.TokenDetails) error{
 		AccessUuid: details.AccessUuid,
 		CreateAt:   now.String(),
 	}
-	err := db.InsertOne( "AccessToken", access)
+	_, err := db.InsertOne( "AccessToken", access)
 	if err != nil{
 		return err
 	}
@@ -65,7 +65,7 @@ func CreateAuth(userId string, details *model.TokenDetails) error{
 		RefreshUuid: details.RefreshUuid,
 		CreateAt:    now.String(),
 	}
-	err = db.InsertOne("RefreshToken", refresh)
+	_, err = db.InsertOne("RefreshToken", refresh)
 	return err
 }
 

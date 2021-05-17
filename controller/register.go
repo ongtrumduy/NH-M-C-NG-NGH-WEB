@@ -45,7 +45,7 @@ func Register(c *routefw.Context){
 		return
 	}
 	user.ID = primitive.NewObjectID()
-	err = db.InsertOne("user", user)
+	_, err = db.InsertOne("user", user)
 
 	if err != nil{
 		c.JSON(http.StatusInternalServerError, err.Error())

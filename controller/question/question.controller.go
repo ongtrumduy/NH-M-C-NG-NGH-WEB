@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"web/controller/test"
+	"web/model"
 	"web/routefw"
 )
 
@@ -23,5 +25,19 @@ func GetPaginateQuestionByTestIdController (c *routefw.Context) {
 }
 
 func CreateQuestionController(c *routefw.Context) {
-	CreateQuestion()
+	testId := c.Param("testId")
+	data := &[]model.Question{}
+	err := c.DecodeJson(data)
+	if err != nil{
+		fmt.Println(err)
+		c.JSON(http.StatusBadRequest, err)
+		return
+	}
+
+	// Tạo các question
+	var questions = CreateQuestion(*data)
+	// Kết nối các question vừa tạo vào test
+	test.UpdateTest(testId, questions)
+
+	c.JSON(http.StatusOK, questions)
 }

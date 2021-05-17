@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
@@ -47,52 +48,37 @@ func GetPaginateTest (level string, page int, perPage int) (a []model.Test){
 	return tests
 }
 
-//func CreateTest() {
-//	ans1 := model.Answer{
-//		Title: "1",
-//	}
-//	ans2 := model.Answer{
-//		Title: "2",
-//	}
-//	var ans []model.Answer
-//	ans = append(ans, ans1, ans2)
-//
-//	questionModel := model.Question{
-//		Title:         	"question1",
-//		Answers: 		ans,
-//		CorrectAnswer: 	ans1,
-//	}
-//	//db.InsertOne("exam", "questions", questionModel)
-//
-//	filter := bson.D{{}}
-//	question1, err := db.Find("exam", "questions", questionModel, filter)
-//	if err != nil{
-//		fmt.Println(err)
-//	}
-//
-//	var results []bson.M
-//	var questions [10]model.Question
-//
-//	//if err = question1.All(context.TODO(), &results); err != nil {
-//	//	log.Fatal(err)
-//	//}
-//	fmt.Println("result")
-//	for i, result := range results {
-//		fmt.Println(result)
-//
-//		bsonBytes, _ := bson.Marshal(result)
-//		bson.Unmarshal(bsonBytes, &questions[i])
-//		//fmt.Println(questions)
-//	}
-//
-//	fmt.Println(questions, questions[0].Title)
-//}
+func CreateTest(data *model.Test) (a model.Test) {
+	var test = model.Test{}
+
+	testDate := model.Test{
+		Title: data.Title,
+		Description: data.Description,
+		NumberOfQuestion: data.NumberOfQuestion,
+		Type: data.Type,
+		Logo: data.Logo,
+	}
+
+	testResult, _ := db.InsertOne(test.GetCollectionName(), testDate)
+	testId := testResult.InsertedID.(primitive.ObjectID).String()
+	test = GetTestById(testId)
+
+	return test
+}
 
 func EvaluateTest(testId string, userId string, answers []string) (a model.Test)  {
-	var tests =  model.Test{}
+	var test =  model.Test{}
 	var answerRight = [] model.Answer{}
+	var result = model.Result{}
 
-	matchStage1 := bson.D{{ "$match", bson.D{{ "_id", testId }} }}
+	testIdObjectId, _ := primitive.ObjectIDFromHex(testId)
+	answerIds := make([]primitive.ObjectID, len(answers))
+
+	for i:=0; i < len(answers); i++ {
+		id, _ := primitive.ObjectIDFromHex(answers[i])
+		answerIds[i] = id
+	}
+	matchStage1 := bson.D{{ "$match", bson.D{{ "_id", testIdObjectId }} }}
 	lookupStage := bson.D{{ "$lookup",
 		bson.D{
 			{ "from", "questions" },
@@ -104,7 +90,7 @@ func EvaluateTest(testId string, userId string, answers []string) (a model.Test)
 	unwindStage1 := bson.D{{"$unwind", "$questionDetails" }}
 	unwindStage2 := bson.D{{"$unwind", "$questionDetails.answers" }}
 	replaceRootStage := bson.D{{ "$replaceRoot", bson.D{{ "newRoot", "$questionDetails.answers" }} }}
-	matchStage2 := bson.D{{ "$match", bson.D{{ "_id", bson.D{{ "$in", answers }} }} }}
+	matchStage2 := bson.D{{ "$match", bson.D{{ "_id", bson.D{{ "$in", answerIds }} }} }}
 
 	filter := mongo.Pipeline{matchStage1, lookupStage, unwindStage1, unwindStage2, replaceRootStage, matchStage2}
 
@@ -116,13 +102,19 @@ func EvaluateTest(testId string, userId string, answers []string) (a model.Test)
 		log.Fatal(err)
 	}
 
-	fmt.Println(answerRight)
-	//cursor2, err := db.Update(model.Test{}.GetCollectionName(), filter, &opts)
-	//if err = cursor2.All(context.TODO(), &tests); err != nil {
-	//	log.Fatal(err)
-	//}
+	result.Users, err = primitive.ObjectIDFromHex(userId)
+	result.Score = len(answerRight)*10
+	filter2 := bson.D{{ "_id", testIdObjectId }}
+	update := bson.D{{ "$push", bson.D{{ "results", result }} }}
+	opts2 := options.UpdateOptions{}
+	fmt.Println("result", filter2, update)
+	_, err1 := db.UpdateOne(model.Test{}.GetCollectionName(), filter2, update, &opts2)
+	if err1 != nil {
+		log.Fatal("777",err1)
+	}
 
-	return tests
+	test = GetTestById(testId)
+	return test
 	//{ $match: { _id: ObjectId("607e8a8438cd365f6e5083ec") }},
 	//{ $lookup: {
 	//from: "questions",
@@ -136,4 +128,20 @@ func EvaluateTest(testId string, userId string, answers []string) (a model.Test)
 	//{$match: {
 	//	_id: {$in: [ObjectId("607f1299058bccf4cffce5b7"), ObjectId("607f12b2a1d2c739abcc2f11")]}
 	//}}
+}
+
+//{ $match: { _id: ObjectId("607e8a8438cd365f6e5083ec") }},
+//
+//{$unwind: "$results"},
+//{$replaceRoot: {newRoot:"$results"}},
+//{$sort: {"score":-1}}
+
+func UpdateTest(testId string, questions []primitive.ObjectID) {
+	filter2 := bson.D{{ "_id", testId }}
+	update := bson.D{{ "$set", bson.D{{ "questions", questions }} }}
+	opts2 := options.UpdateOptions{}
+	_, err1 := db.UpdateOne(model.Test{}.GetCollectionName(), filter2, update, &opts2)
+	if err1 != nil {
+		log.Fatal("777",err1)
+	}
 }

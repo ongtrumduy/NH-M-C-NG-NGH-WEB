@@ -44,7 +44,7 @@ var routers = []MyRoute{
 	},
 	{
 		name:    "creation_question",
-		path:    "/questions/",
+		path:    "/questions/tests/:testId",
 		method:  "post",
 		handler: question.CreateQuestionController,
 	},
@@ -65,6 +65,12 @@ var routers = []MyRoute{
 		path:    "/tests/",
 		method:  "get",
 		handler: test.GetPaginateTestCotroller,
+	},
+	{
+		name:    "create_test",
+		path:    "/tests/",
+		method:  "post",
+		handler: test.CreateTestController,
 	},
 	{
 		name:    "register",

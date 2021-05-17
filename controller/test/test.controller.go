@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"web/model"
 	"web/routefw"
 )
 
@@ -23,50 +24,23 @@ func GetPaginateTestCotroller (c *routefw.Context) {
 	c.JSON(http.StatusOK, tests)
 }
 
-//func CreateTestController() {
-//	ans1 := model.Answer{
-//		Title: "1",
-//	}
-//	ans2 := model.Answer{
-//		Title: "2",
-//	}
-//	var ans []model.Answer
-//	ans = append(ans, ans1, ans2)
-//
-//	questionModel := model.Question{
-//		Title:         	"question1",
-//		Answers: 		ans,
-//		CorrectAnswer: 	ans1,
-//	}
-//	//db.InsertOne("exam", "questions", questionModel)
-//
-//	filter := bson.D{{}}
-//	question1, err := db.Find("exam", "questions", questionModel, filter)
-//	if err != nil{
-//		fmt.Println(err)
-//	}
-//
-//	var results []bson.M
-//	var questions [10]model.Question
-//
-//	//if err = question1.All(context.TODO(), &results); err != nil {
-//	//	log.Fatal(err)
-//	//}
-//	fmt.Println("result")
-//	for i, result := range results {
-//		fmt.Println(result)
-//
-//		bsonBytes, _ := bson.Marshal(result)
-//		bson.Unmarshal(bsonBytes, &questions[i])
-//		//fmt.Println(questions)
-//	}
-//
-//	fmt.Println(questions, questions[0].Title)
-//}
+func CreateTestController(c *routefw.Context) {
+	data := &model.Test{}
+	err := c.DecodeJson(data)
+	if err != nil{
+		fmt.Println(err)
+		c.JSON(http.StatusBadRequest, err)
+		return
+	}
+
+	var test = CreateTest(data)
+
+	c.JSON(http.StatusOK, test)
+}
 
 func EvaluateTestController(c *routefw.Context)  {
 	testId := c.Param("id")
-	data := BodyEvaluateTest{}
+	data := &BodyEvaluateTest{}
 	err := c.DecodeJson(data)
 	if err != nil{
 		fmt.Println(err)

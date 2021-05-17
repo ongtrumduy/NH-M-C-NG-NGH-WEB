@@ -45,29 +45,26 @@ func GetPaginateQuestionByTestId (testId string, page int, perPage int) (a []mod
 	return questions
 }
 
-func CreateQuestion() {
-	ans1 := model.Answer{
-		ID: primitive.NewObjectID(),
-		IsCorrect: false,
-		Title: "1",
+func CreateQuestion(data []model.Question) (results []primitive.ObjectID){
+	var questions [] interface{}
+	for i := 0; i < len(data); i++ {
+		questions[i] = model.Question{
+			Title: data[i].Title,
+			Answers: data[i].Answers,
+		}
 	}
-	ans2 := model.Answer{
-		ID: primitive.NewObjectID(),
-		IsCorrect: true,
-		Title: "2",
-	}
-	var ans []model.Answer
-	ans = append(ans, ans1, ans2)
 
-	questionModel := model.Question{
-		Title:         	"question1",
-		Answers: 		ans,
-	}
-	db.InsertOne("questions", questionModel)
-
-	filter := bson.D{{}}
-	_, err := db.Find(questionModel.GetCollectionName(), filter)
+	// Tạo các question
+	cursor, err := db.InsertMany(model.Question{}.GetCollectionName(), questions)
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	// Lấy mảng các id question vừa tạo
+	questionId := cursor.InsertedIDs
+	for i := 0; i < len(questionId); i++ {
+		results[i] = questionId[i].(primitive.ObjectID)
+	}
+
+	return results
 }
