@@ -36,7 +36,7 @@ export default class UserContent extends React.Component {
             socket={this.props.socket}
           />
         );
-      case "excercises":
+      case "Excercises":
         return (
           <Excercises
             MemberID={this.props.MemberID}

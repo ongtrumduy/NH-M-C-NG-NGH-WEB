@@ -98,7 +98,7 @@ export default class RemindersCreateNew extends React.Component {
 
   sentToCreateNewReminder = () => {
     axios
-      .post("/createnewexcercisecontent", {
+      .post("/createnewExcercisecontent", {
         ExcerciseName: this.state.ExcerciseName,
         ExcerciseDescription: this.state.ExcerciseDescription,
         ExcerciseLogo: this.state.ExcerciseLogo,
@@ -110,9 +110,9 @@ export default class RemindersCreateNew extends React.Component {
         this.setState({
           checkValidate: res.data.checkValidate
         });
-        if (res.data.checkValidate === "success-create-excercise") {
+        if (res.data.checkValidate === "success-create-Excercise") {
           this.openConfirmCreateModal();
-        } else if (res.data.checkValidate === "excercisename") {
+        } else if (res.data.checkValidate === "Excercisename") {
           this.openValidateExcerciseNameModal();
         } else {
           this.openHavedExcerciseNameModal();
@@ -143,11 +143,11 @@ export default class RemindersCreateNew extends React.Component {
 
   createNewExcerciseForm = () => {
     return (
-      <div className="user-excercises_create-new__main">
+      <div className="user-Excercises_create-new__main">
         <div
-          className="user-excercises_create-new__main___backtoexcerciseall"
+          className="user-Excercises_create-new__main___backtoExcerciseall"
           onClick={() =>
-            this.props.updateRenderExcerciseControl("excerciseall")
+            this.props.updateRenderExcerciseControl("Excerciseall")
           }
         >
           <div>
@@ -158,8 +158,8 @@ export default class RemindersCreateNew extends React.Component {
           </div>
         </div>
         <form onSubmit={event => this.handleCreateNewExcercise(event)}>
-          <div className="user-excercises_create-new__main___excercise">
-            <div className="user-excercises_create-new__main___excercise____form">
+          <div className="user-Excercises_create-new__main___Excercise">
+            <div className="user-Excercises_create-new__main___Excercise____form">
               <div>
                 <p>Tên Bộ đề - Bài tập</p>
                 <input
@@ -188,7 +188,7 @@ export default class RemindersCreateNew extends React.Component {
                   value={this.state.ExcerciseNumberQuestion}
                 />
                 <p>Chọn chế độ hiển thị Bộ đề</p>
-                <div className="user-excercises_create__excercise___form____radio-button">
+                <div className="user-Excercises_create__Excercise___form____radio-button">
                   <div>
                     <input
                       type="radio"
@@ -252,15 +252,15 @@ export default class RemindersCreateNew extends React.Component {
                 </select>
               </div>
 
-              <div className="user-excercises_create__excercise___form____create-button">
+              <div className="user-Excercises_create__Excercise___form____create-button">
                 <input type="submit" value="Xác nhận tạo" />
               </div>
             </div>
 
-            <div className="user-excercises_create__excercise___excercise-logo">
+            <div className="user-Excercises_create__Excercise___Excercise-logo">
               <div>
                 <img
-                  alt="excercise-excercise-logo"
+                  alt="Excercise-Excercise-logo"
                   src={this.state.setExcerciseLogoChoose}
                 />
               </div>

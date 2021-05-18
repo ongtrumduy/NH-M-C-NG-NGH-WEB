@@ -63,13 +63,13 @@ export default class ExcercisesAllList extends React.Component {
 
   render() {
     return (
-      <div className="user-excercises_all-list">
-        <div className="user-excercises_all-list__select-choose">
-          <div className="user-excercises_all-list__select-choose___search">
+      <div className="user-Excercises_all-list">
+        <div className="user-Excercises_all-list__select-choose">
+          <div className="user-Excercises_all-list__select-choose___search">
             <input type="text" />
             <input type="button" value="Tìm kiếm" />
           </div>
-          <div className="user-excercises_all-list__select-choose___excercise-list">
+          <div className="user-Excercises_all-list__select-choose___Excercise-list">
             <input
               type="radio"
               value="publiclist"

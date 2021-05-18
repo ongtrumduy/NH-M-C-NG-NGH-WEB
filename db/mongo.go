@@ -10,6 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
 	"os"
+	"web/newModel"
 )
 
 var (
@@ -137,4 +138,16 @@ func Aggregate(collectionName string, pipeline interface{}, opts ...*options.Agg
 func FindOneAndUpdate(collection string, filter interface{}, update interface{}, opts ...*options.FindOneAndUpdateOptions) error{
 	col := Client().Database(DB_NAME).Collection(collection)
 	return col.FindOneAndUpdate(CTX, filter, update).Err()
+}
+
+func FindAllExercise() ([]newModel.Excercise, error){
+	col := Client().Database(DB_NAME).Collection("Excercise")
+	cur, err := col.Find(CTX,bson.D{})
+	if err != nil{
+		fmt.Println("err ", err)
+		return nil, err
+	}
+	exercises := []newModel.Excercise{}
+	cur.All(CTX, &exercises)
+	return exercises, nil
 }

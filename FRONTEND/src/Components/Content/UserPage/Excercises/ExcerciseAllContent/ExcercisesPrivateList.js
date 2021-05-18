@@ -11,7 +11,7 @@ export default class ExcercisesPrivateList extends React.Component {
 
   componentDidMount = () => {
     axios
-      .post("/getexcercisepublixclist", {
+      .post("/getExcercisepublixclist", {
         MemberID: this.props.MemberID
       })
       .then(res => {
@@ -27,7 +27,7 @@ export default class ExcercisesPrivateList extends React.Component {
 
   chooseOneJoinedExcercise = ExcerciseID => {
     this.props.getExcerciseIDMemberChoice(ExcerciseID);
-    this.props.updateRenderTeamControl("excercisecontent");
+    this.props.updateRenderTeamControl("Excercisecontent");
   };
 
   render() {

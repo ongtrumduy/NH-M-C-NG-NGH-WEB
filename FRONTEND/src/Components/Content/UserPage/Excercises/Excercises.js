@@ -8,7 +8,7 @@ export default class Excercises extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      setExcerciseRender: "excerciseall"
+      setExcerciseRender: "Excerciseall"
     };
   }
 
@@ -20,7 +20,7 @@ export default class Excercises extends React.Component {
 
   renderExcerciseControlContent = () => {
     switch (this.state.setExcerciseRender) {
-      case "createexcercisenew":
+      case "createExcercisenew":
         return (
           <ExcercisesCreateNew
             MemberID={this.props.MemberID}
@@ -28,7 +28,7 @@ export default class Excercises extends React.Component {
             updateRenderExcerciseControl={this.updateRenderExcerciseControl}
           />
         );
-      case "excerciseall":
+      case "Excerciseall":
         return (
           <ExcercisesAllContent
             MemberID={this.props.MemberID}
@@ -49,7 +49,7 @@ export default class Excercises extends React.Component {
 
   render() {
     return (
-      <div className="user-excercises">
+      <div className="user-Excercises">
         {this.renderExcerciseControlContent()}
       </div>
     );

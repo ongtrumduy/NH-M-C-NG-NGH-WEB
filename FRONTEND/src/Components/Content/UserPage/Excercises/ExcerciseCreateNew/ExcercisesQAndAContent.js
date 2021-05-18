@@ -119,25 +119,25 @@ export default class ExcercisesQAndAContent extends React.Component {
   };
 
   getAllQAContentToExcerciseContent = (
-    excerciseNthQuestion,
-    excerciseQuestionContent,
-    excerciseAnswerContentA,
-    excerciseAnswerContentB,
-    excerciseAnswerContentC,
-    excerciseAnswerContentD,
-    excerciseCorrectAnswer
+    ExcerciseNthQuestion,
+    ExcerciseQuestionContent,
+    ExcerciseAnswerContentA,
+    ExcerciseAnswerContentB,
+    ExcerciseAnswerContentC,
+    ExcerciseAnswerContentD,
+    ExcerciseCorrectAnswer
   ) => {
     let QAContent = {
-      ExcerciseNthQuestion: excerciseNthQuestion,
-      ExcerciseQuestionContent: excerciseQuestionContent,
-      ExcerciseAnswerContentA: excerciseAnswerContentA,
-      ExcerciseAnswerContentB: excerciseAnswerContentB,
-      ExcerciseAnswerContentC: excerciseAnswerContentC,
-      ExcerciseAnswerContentD: excerciseAnswerContentD,
-      ExcerciseCorrectAnswer: excerciseCorrectAnswer
+      ExcerciseNthQuestion: ExcerciseNthQuestion,
+      ExcerciseQuestionContent: ExcerciseQuestionContent,
+      ExcerciseAnswerContentA: ExcerciseAnswerContentA,
+      ExcerciseAnswerContentB: ExcerciseAnswerContentB,
+      ExcerciseAnswerContentC: ExcerciseAnswerContentC,
+      ExcerciseAnswerContentD: ExcerciseAnswerContentD,
+      ExcerciseCorrectAnswer: ExcerciseCorrectAnswer
     };
     let nthindex = this.state.ExcerciseQAContent.findIndex(questitem => {
-      return questitem.ExcerciseNthQuestion === excerciseNthQuestion;
+      return questitem.ExcerciseNthQuestion === ExcerciseNthQuestion;
     });
     if (nthindex >= 0) {
       this.state.ExcerciseQAContent.splice(nthindex, 1, QAContent);
@@ -154,15 +154,15 @@ export default class ExcercisesQAndAContent extends React.Component {
 
   sendAllQAndAExcerciseContent = () => {
     axios
-      .post("/createnewexcercisecontent", {})
+      .post("/createnewExcercisecontent", {})
       .then(res => {
         console.log("...................",res.data);
         this.setState({
           checkValidate: res.data.checkValidate
         });
-        if (res.data.checkValidate === "success-create-excercise-content") {
+        if (res.data.checkValidate === "success-create-Excercise-content") {
           setTimeout(() => {
-            this.props.updateRenderExcerciseControl("excerciseall");
+            this.props.updateRenderExcerciseControl("Excerciseall");
           }, 1000);
         }
       })
@@ -182,9 +182,9 @@ export default class ExcercisesQAndAContent extends React.Component {
     }
   };
 
-  excerciseQAndAControl = () => {
+  ExcerciseQAndAControl = () => {
     return (
-      <div className="user-excercises_create-new__QandA___control">
+      <div className="user-Excercises_create-new__QandA___control">
         <div>
           <i
             style={
@@ -274,7 +274,7 @@ export default class ExcercisesQAndAContent extends React.Component {
 
   createNewExcerciseQAContent = () => {
     return (
-      <div className="user-excercises_create-new__QandA">
+      <div className="user-Excercises_create-new__QandA">
         <ExcercisesQAndAMainInfor
           MemberID={this.props.MemberID}
           socket={this.props.socket}
@@ -289,7 +289,7 @@ export default class ExcercisesQAndAContent extends React.Component {
         />
 
         {this.renderExcercisesQAndAContentItem()}
-        {this.excerciseQAndAControl()}
+        {this.ExcerciseQAndAControl()}
       </div>
     );
   };

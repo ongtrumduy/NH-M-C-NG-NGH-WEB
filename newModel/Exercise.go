@@ -5,13 +5,13 @@ import (
 )
 
 type Excercise struct {
-	ExcerciseID					primitive.ObjectID		`json:"ExcerciseID" bson:"ExcerciseID"`
+	ExcerciseID					primitive.ObjectID		`json:"ExcerciseID,omitempty" bson:"_id,omitempty"`
 	ExcerciseName				string					`json:"ExcerciseName" bson:"ExcerciseName"`
 	ExcerciseDescription		string					`json:"ExcerciseDescription" bson:"ExcerciseDescription"`
 	ExcerciseLogo				string					`json:"ExcerciseLogo" bson:"ExcerciseLogo"`
-	ExcerciseCreateMenberID		string					`json:"ExcerciseCreateMenberID" bson:"ExcerciseCreateMenberID"`
+	//ExcerciseCreateMenberID		string					`json:"ExcerciseCreateMenberID" bson:"ExcerciseCreateMenberID"`
 	ExcerciseType				string					`json:"ExcerciseType" bson:"ExcerciseType"`
-	ExcerciseNumberQuestion		int						`json:"ExcerciseNumberQuestion" bson:"ExcerciseNumberQuestion"`
+	ExcerciseNumberQuestion		string					`json:"ExcerciseNumberQuestion" bson:"ExcerciseNumberQuestion"`
 	ExcerciseQAContent			[]ExcerciseQAContent	`json:"ExcerciseQAContent" bson:"ExcerciseQAContent"`
 }
 

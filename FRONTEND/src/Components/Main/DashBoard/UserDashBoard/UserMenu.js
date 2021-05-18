@@ -87,10 +87,10 @@ export default class UserMenu extends React.Component {
               fontSize: "48px",
               cursor: "pointer",
               color:
-                (this.state.setColor === "excercises" && "green") || "black"
+                (this.state.setColor === "Excercises" && "green") || "black"
             }}
             onClick={() => {
-              this.updateRenderContent("excercises");
+              this.updateRenderContent("Excercises");
             }}
           >
             &#xe22b;
