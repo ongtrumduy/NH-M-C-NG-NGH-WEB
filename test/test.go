@@ -4,32 +4,32 @@ import (
 	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
 	"web/db"
-	"web/model"
+	"web/newModel"
 )
 
 func main(){
-	//u1 := model.User{
-	//	UserName: "dung",
-	//	PassWord: "123456",
-	//	Email:    "dung@gmail.com",
-	//}
-	//
-	//u2 := model.User{
-	//	UserName: "user1",
-	//	PassWord: "123456",
-	//	Email:    "user1@gamil.com",
-	//}
-	//db.InsertOne("exam", "user", u1)
-	//db.InsertOne("exam", "user", u2)
+	col := db.Client().Database("exam").Collection("Excercise")
+	//findOptions := options.Find()
 
-	//db.Find("exam", bson.D{{"user_name", "dung"}})
-	//u := model.User{}
-	rs := db.FindOne("user", bson.D{{"user_name", "dung"}})
-	user := &model.User{}
-	err := rs.Decode(user)
+	cursor, err  := col.Find(db.CTX, bson.D{})
 	if err != nil{
 		fmt.Println("err ", err)
-
+		return
 	}
-	fmt.Println(user)
+
+	exercise := []newModel.Excercise{}
+//	err = cursor.All(db.CTX,&exercise)
+//	if err != nil{
+//		fmt.Println("err",  err)
+//	}
+//	fmt.Println(exercise)
+//	//a(exercise)
+//	x := newModel.Excercise{}
+//	a(x)
+	cursor.Decode(&exercise)
+	fmt.Println(exercise)
+}
+
+func a(x interface{}){
+	fmt.Println(x)
 }
