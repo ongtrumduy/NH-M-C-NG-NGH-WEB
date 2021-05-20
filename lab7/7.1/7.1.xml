@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--student.xml-->
+<student>
+    <name>Nguyen Van Chien</name>
+    <ID>20183870</ID>
+    <email> chien.nv188370@sis.hust.edu.vn </email>
+    <phone> 0353210133 </phone>
+    <birthday>2000/09/11</birthday>
+    <address>HBT/HN/VN</address>
+    <school>HUST</school>
+    <branch>IT3</branch>
+    <class>IT3-01</class>
+    <level>2.85</level>
+    <cpa>4.0</cpa>
+</student>
